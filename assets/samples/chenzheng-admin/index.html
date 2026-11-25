@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>今天｜晨蒸粿舖 訂單後台（概念作品）</title>
+<meta name="description" content="虛構粿店「晨蒸粿舖」的訂單後台原型：今天每種粿要做多少、誰幾點來拿、哪幾筆還沒確認。概念作品，店家與訂單資料都是虛構的。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#efe9e1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<p class="notice">概念作品，店家與訂單資料都是虛構的</p>
+
+<header class="bar">
+  <div class="bar__in">
+    <a class="brand" href="#today" aria-label="晨蒸粿舖 訂單後台，回到今天">
+      <span class="brand__name">晨蒸粿舖</span>
+      <span class="brand__role">訂單</span>
+    </a>
+    <nav class="tabs" aria-label="主要畫面">
+      <a class="tabs__link" href="#today" data-view="today">今天</a>
+      <a class="tabs__link" href="#orders" data-view="orders">訂單</a>
+      <a class="tabs__link" href="#giftbox" data-view="giftbox">年節禮盒</a>
+    </nav>
+    <a class="btn btn--primary bar__new" href="#new" data-view="new">
+      <svg class="icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+      新增訂單
+    </a>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <noscript><p class="noscript">這個原型要開啟 JavaScript 才看得到訂單。</p></noscript>
+  <div id="view" class="view"></div>
+</main>
+
+<nav class="dock" aria-label="主要畫面">
+  <a class="dock__link" href="#today" data-view="today">
+    <svg class="icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="M10 6.5V10l2.5 1.5"/></svg>
+    今天
+  </a>
+  <a class="dock__link" href="#orders" data-view="orders">
+    <svg class="icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3.5h10v13H5zM7.5 7h5M7.5 10h5M7.5 13h3"/></svg>
+    訂單
+  </a>
+  <a class="dock__link" href="#giftbox" data-view="giftbox">
+    <svg class="icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 8h13v8.5h-13zM2.5 5.5h15V8h-15zM10 5.5v11"/></svg>
+    禮盒
+  </a>
+  <a class="dock__link dock__link--new" href="#new" data-view="new">
+    <svg class="icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+    新增
+  </a>
+</nav>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title"></dialog>
+
+<div class="testbar" id="testbar" role="group" aria-label="測試資料" hidden></div>
+
+<div class="toast" id="toast" role="status" hidden>
+  <span class="toast__text" id="toast-text"></span>
+  <button class="toast__undo" id="toast-undo" type="button" hidden>復原</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+/* LINE LIFF Demo — shared styles */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Noto Sans TC',-apple-system,sans-serif}
+body{
+  background:linear-gradient(135deg,#0a0e1a 0%,#131825 100%);
+  display:flex;align-items:center;justify-content:center;
+  padding:14px;overflow:hidden;
+}
+
+.phone-frame{
+  width:380px;height:760px;
+  background:#000;border-radius:46px;
+  padding:12px;
+  box-shadow:0 30px 80px -10px rgba(6,199,85,.22),
+             0 0 0 1px rgba(255,255,255,.08),
+             inset 0 0 0 2px #2a2a2a;
+  position:relative;
+}
+.phone-frame::before{
+  content:'';
+  position:absolute;top:18px;left:50%;
+  transform:translateX(-50%);
+  width:120px;height:26px;
+  background:#000;border-radius:0 0 16px 16px;
+  z-index:5;
+}
+
+.phone-screen{
+  width:100%;height:100%;
+  background:#dbe2eb;
+  border-radius:34px;
+  overflow:hidden;display:flex;flex-direction:column;
+  position:relative;
+}
+
+.status-bar{
+  height:38px;display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 26px 6px;font-size:12px;font-weight:600;color:#1a1a1a;
+  flex-shrink:0;
+}
+.status-bar .right{display:flex;gap:5px;align-items:center;font-size:11px}
+
+.liff-area{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  padding:12px 14px 24px;
+  scrollbar-width:none;
+}
+.liff-area::-webkit-scrollbar{display:none}
+
+.brand-header{
+  display:flex;flex-direction:column;align-items:flex-start;
+  margin-bottom:10px;
+}
+.brand-avatar{
+  width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;
+  font-size:18px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+.brand-tag{
+  font-size:10px;color:#475569;margin-top:3px;font-weight:600;
+}
+
+.hero-card{
+  background:#0f1115;color:#fff;
+  border-radius:14px;
+  padding:18px 18px 20px;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+.hot-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.hot-badge{
+  background:#ef4444;color:#fff;
+  font-size:11px;font-weight:800;
+  padding:3px 8px;border-radius:5px;
+  display:inline-flex;align-items:center;gap:3px;
+  letter-spacing:.5px;
+}
+.hot-banner{
+  font-size:12px;font-weight:700;letter-spacing:.5px;color:#fff;
+}
+
+.brand-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;margin:6px 0 12px;
+}
+.brand-row .icon{font-size:30px}
+.brand-row h1{
+  font-size:28px;font-weight:900;letter-spacing:.5px;
+  color:#fff;
+}
+
+.sub-line{
+  font-size:12.5px;line-height:1.55;color:#d1d5db;
+  display:flex;gap:6px;align-items:flex-start;margin-top:4px;
+}
+.sub-line .em{flex-shrink:0;font-size:13px}
+
+.divider{
+  text-align:center;font-size:12px;color:#475569;
+  margin:14px 6px 8px;font-weight:600;letter-spacing:.5px;
+}
+
+.srv-stack{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+
+.srv{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;
+  border-radius:10px;border:0;
+  font-family:inherit;font-size:14.5px;font-weight:700;
+  cursor:pointer;width:100%;text-align:left;
+  transition:transform .15s ease,filter .15s ease;
+  box-shadow:0 2px 5px rgba(0,0,0,.08);
+}
+.srv:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.srv:active{transform:translateY(0);filter:brightness(.95)}
+.srv .em{font-size:18px;width:22px;text-align:center;flex-shrink:0}
+.srv .label{flex:1}
+.srv .arrow{font-size:14px;font-weight:800;opacity:.9}
+
+/* default palette (fallback) */
+:root{
+  --c-blue:#3b82f6;   --cf-blue:#fff;
+  --c-yellow:#b8923b; --cf-yellow:#fff;
+  --c-red:#ef4444;    --cf-red:#fff;
+  --c-green:#22c55e;  --cf-green:#fff;
+  --c-dark:#1f2937;   --cf-dark:#fff;
+  --c-light:#ffffff;  --cf-light:#1f2937;
+  --c-cream:#fef3c7;  --cf-cream:#b45309;
+  --c-pink:#fecaca;   --cf-pink:#b91c1c;
+  --c-pink-arrow:#dc2626;
+}
+
+.srv.blue   {background:var(--c-blue);   color:var(--cf-blue)}
+.srv.yellow {background:var(--c-yellow); color:var(--cf-yellow)}
+.srv.red    {background:var(--c-red);    color:var(--cf-red)}
+.srv.green  {background:var(--c-green);  color:var(--cf-green)}
+.srv.dark   {background:var(--c-dark);   color:var(--cf-dark)}
+.srv.light  {background:var(--c-light);  color:var(--cf-light)}
+.srv.cream  {background:var(--c-cream);  color:var(--cf-cream)}
+.srv.cream .label{text-decoration:underline}
+.srv.pink   {background:var(--c-pink);   color:var(--cf-pink)}
+.srv.pink .arrow{color:var(--c-pink-arrow)}
+
+/* ====== per-industry themes ====== */
+/* 美甲 · 粉嫩 / 玫紅 / 薄荷 */
+.theme-nail{
+  --c-blue:#ec4899;   --cf-blue:#fff;
+  --c-yellow:#d97706; --cf-yellow:#fff;
+  --c-red:#be123c;    --cf-red:#fff;
+  --c-green:#14b8a6;  --cf-green:#fff;
+  --c-dark:#18181b;   --cf-dark:#fff;
+  --c-light:#fdf2f8;  --cf-light:#831843;
+  --c-cream:#fef9c3;  --cf-cream:#92400e;
+  --c-pink:#fce7f3;   --cf-pink:#9d174d;
+  --c-pink-arrow:#be185d;
+}
+/* 貸款 · 金融藍 / 金黃 */
+.theme-loan{
+  --c-blue:#1e40af;   --cf-blue:#fff;
+  --c-yellow:#ca8a04; --cf-yellow:#fff;
+  --c-red:#b91c1c;    --cf-red:#fff;
+  --c-green:#15803d;  --cf-green:#fff;
+  --c-dark:#1e293b;   --cf-dark:#fff;
+  --c-light:#dbeafe;  --cf-light:#1e3a8a;
+  --c-cream:#fef3c7;  --cf-cream:#92400e;
+  --c-pink:#fee2e2;   --cf-pink:#991b1b;
+  --c-pink-arrow:#dc2626;
+}
+/* 看車 · 速度紅 / 賽車黑 */
+.theme-car{
+  --c-blue:#dc2626;   --cf-blue:#fff;
+  --c-yellow:#a16207; --cf-yellow:#fff;
+  --c-red:#991b1b;    --cf-red:#fff;
+  --c-green:#166534;  --cf-green:#fff;
+  --c-dark:#18181b;   --cf-dark:#fff;
+  --c-light:#f3f4f6;  --cf-light:#18181b;
+  --c-cream:#fef3c7;  --cf-cream:#92400e;
+  --c-pink:#fee2e2;   --cf-pink:#b91c1c;
+  --c-pink-arrow:#dc2626;
+}
+/* 看房 · 暖橘 / 信任金 */
+.theme-house{
+  --c-blue:#ea580c;   --cf-blue:#fff;
+  --c-yellow:#d97706; --cf-yellow:#fff;
+  --c-red:#b45309;    --cf-red:#fff;
+  --c-green:#047857;  --cf-green:#fff;
+  --c-dark:#44403c;   --cf-dark:#fff;
+  --c-light:#fef3c7;  --cf-light:#78350f;
+  --c-cream:#fed7aa;  --cf-cream:#9a3412;
+  --c-pink:#fee2e2;   --cf-pink:#b91c1c;
+  --c-pink-arrow:#dc2626;
+}
+/* 健身 · 活力橘 / 亮黃 */
+.theme-fitness{
+  --c-blue:#f97316;   --cf-blue:#fff;
+  --c-yellow:#facc15; --cf-yellow:#422006;
+  --c-red:#ef4444;    --cf-red:#fff;
+  --c-green:#16a34a;  --cf-green:#fff;
+  --c-dark:#1f2937;   --cf-dark:#fff;
+  --c-light:#fff7ed;  --cf-light:#9a3412;
+  --c-cream:#fef3c7;  --cf-cream:#92400e;
+  --c-pink:#fecaca;   --cf-pink:#991b1b;
+  --c-pink-arrow:#dc2626;
+}
+/* 寵物 · 薄荷 / 萊姆 / 玫粉 */
+.theme-pet{
+  --c-blue:#14b8a6;   --cf-blue:#fff;
+  --c-yellow:#facc15; --cf-yellow:#422006;
+  --c-red:#fb7185;    --cf-red:#fff;
+  --c-green:#84cc16;  --cf-green:#fff;
+  --c-dark:#422006;   --cf-dark:#fff;
+  --c-light:#f0fdfa;  --cf-light:#134e4a;
+  --c-cream:#fef3c7;  --cf-cream:#92400e;
+  --c-pink:#fdf2f8;   --cf-pink:#831843;
+  --c-pink-arrow:#be185d;
+}
+/* 命理 · 神秘紫 / 金黃 */
+.theme-fortune{
+  --c-blue:#7c3aed;   --cf-blue:#fff;
+  --c-yellow:#ca8a04; --cf-yellow:#fff;
+  --c-red:#991b1b;    --cf-red:#fff;
+  --c-green:#1e40af;  --cf-green:#fff;
+  --c-dark:#18181b;   --cf-dark:#fff;
+  --c-light:#f5f3ff;  --cf-light:#5b21b6;
+  --c-cream:#fef3c7;  --cf-cream:#92400e;
+  --c-pink:#fce7f3;   --cf-pink:#9d174d;
+  --c-pink-arrow:#be185d;
+}
+/* 汽車保養 · 工業橘 / 機油綠 */
+.theme-auto{
+  --c-blue:#ea580c;   --cf-blue:#fff;
+  --c-yellow:#ca8a04; --cf-yellow:#fff;
+  --c-red:#b91c1c;    --cf-red:#fff;
+  --c-green:#166534;  --cf-green:#fff;
+  --c-dark:#18181b;   --cf-dark:#fff;
+  --c-light:#f5f5f4;  --cf-light:#1c1917;
+  --c-cream:#fef3c7;  --cf-cream:#92400e;
+  --c-pink:#fee2e2;   --cf-pink:#991b1b;
+  --c-pink-arrow:#dc2626;
+}
+/* 牙醫 · 醫療青藍 / 薄荷 */
+.theme-dental{
+  --c-blue:#0891b2;   --cf-blue:#fff;
+  --c-yellow:#14b8a6; --cf-yellow:#fff;
+  --c-red:#ef4444;    --cf-red:#fff;
+  --c-green:#06b6d4;  --cf-green:#fff;
+  --c-dark:#1e3a8a;   --cf-dark:#fff;
+  --c-light:#ecfeff;  --cf-light:#155e75;
+  --c-cream:#fef3c7;  --cf-cream:#92400e;
+  --c-pink:#fee2e2;   --cf-pink:#991b1b;
+  --c-pink-arrow:#dc2626;
+}
+
+/* per-industry avatar tints — overrides .brand-avatar background */
+.avatar-nail    {background:linear-gradient(135deg,#fde4ec,#f9b9d2)}
+.avatar-loan    {background:linear-gradient(135deg,#dbeafe,#93c5fd)}
+.avatar-car     {background:linear-gradient(135deg,#dcfce7,#86efac)}
+.avatar-house   {background:linear-gradient(135deg,#fef3c7,#fcd34d)}
+.avatar-fit     {background:linear-gradient(135deg,#fee2e2,#fca5a5)}
+.avatar-pet     {background:linear-gradient(135deg,#fae8ff,#f0abfc)}
+.avatar-fortune {background:linear-gradient(135deg,#e9d5ff,#a78bfa)}
+.avatar-auto    {background:linear-gradient(135deg,#fed7aa,#fb923c)}
+.avatar-dental  {background:linear-gradient(135deg,#cffafe,#67e8f9)}

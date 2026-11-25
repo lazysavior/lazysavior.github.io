@@ -1,0 +1,210 @@
+/* Hallmark · shape: Marquee Hero · genre: atmospheric · theme: Refract (deal 2/3, seed line-a8d3·255ed04a·2026-11-25·r0) · job: book · draw: 99062d
+ * hero: Counter（預約要傳的三樣東西就是首屏的主角） · nav: slab · footer: index columns · imagery: photographs, Wikimedia Commons stand-ins（首屏洗澡的狗、門市旁浴缸邊的貓）, natural · signature: 水光裡的預約單：一張透明卡片躺在慢慢流動的澡盆水光上，寫著加 LINE 要傳的品種、體重、想做的項目 · refract: water/pool
+ * axes: light/grotesk-sans/cool · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: E，只有水光時看不出是寵物店；首屏加上浴缸裡的濕狗照片，水光只留在首屏，其他區塊都是安靜的白牆和細線 */
+
+/* 字體：Noto Sans TC 400 當標題（取代 Funnel Display），Noto Sans TC 400／500 當內文（取代 Funnel Sans），中文頁只用 Google Fonts 的思源字體；已直接改在 tokens.css。
+   水光：Refract 原本是即時的水面光紋，這裡用 light.js 以 2D canvas 畫，不用 WebGL；只在首屏，減少動態時只畫一張靜止的。
+   照片：Wikimedia Commons 的暫代照片（兩張都是 CC BY-SA 4.0），使用者同意後存在 img\，照原比例 4:3 使用，沒有修改。
+   載入順序：tokens.css、base.css、styles.css 由 index.html 用三個 <link> 依序載入。 */
+
+:root {
+  --tracking-display: -0.01em;
+  --text-note: 0.8125rem;
+  --slab-h: 64px;
+  --hit: 44px;
+  --pill-sheen: inset 0 1px 0 oklch(100% 0 0 / 0.35);
+  --photo-edge: inset 0 0 0 1px oklch(0% 0.005 240 / 0.1);
+}
+
+body { font-size: 1.0625rem; line-height: 1.75; color: var(--color-ink-2); line-break: strict; overflow-wrap: break-word; }
+h1, h2, h3, .brand, .slab__nav, .pill, .sizes__tab { word-break: keep-all; }
+.nowrap { white-space: nowrap; }
+li, dd, figcaption, td, summary { text-wrap: pretty; }
+.num { font-variant-numeric: tabular-nums; }
+h1, h2, h3 { color: var(--color-ink); }
+h2 { font-size: var(--text-section); line-height: 1.2; }
+h3 { font-family: var(--font-body); font-weight: 500; letter-spacing: 0; }
+
+.skip { position: absolute; left: var(--space-md); top: calc(-1 * var(--space-3xl)); z-index: var(--z-tooltip); padding: var(--space-xs) var(--space-md); border-radius: var(--radius-inner); background: var(--color-ink); color: var(--color-accent-ink); }
+.skip:focus-visible { top: var(--space-md); }
+
+/* 誠實標示 */
+.notice { margin: 0; padding: var(--space-2xs) var(--gutter); background: var(--color-paper-3); color: var(--color-ink-2); font-size: var(--text-note); line-height: 1.6; text-align: center; }
+
+/* ---------- 導覽：一條實心的深藍長條 ---------- */
+.slab { position: sticky; top: 0; z-index: var(--z-sticky-nav); background: var(--color-ink); color: var(--color-accent-ink); }
+.slab__in { display: flex; align-items: center; gap: var(--space-lg); min-height: var(--slab-h); }
+.brand { display: inline-flex; align-items: baseline; gap: var(--space-xs); min-height: var(--hit); padding-block: var(--space-xs); color: inherit; text-decoration: none; }
+.brand__name { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 500; letter-spacing: 0.04em; line-height: 1.3; }
+.brand__kind { font-size: var(--text-sm); color: var(--color-shade); }
+.slab__nav { display: none; }
+.slab__nav a { display: inline-flex; align-items: center; min-height: var(--hit); padding-inline: var(--space-sm); color: var(--color-shade); text-decoration: none; font-size: var(--text-sm); font-weight: 500; transition: color var(--dur-short) var(--ease-out); }
+.slab__nav a:hover { color: var(--color-accent-ink); }
+.slab .slab__line { margin-inline-start: auto; }
+
+/* ---------- 按鈕、連結 ---------- */
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs); min-height: 48px; padding: 0 var(--space-lg); border: 0; border-radius: var(--radius-pill); font-size: var(--text-md); font-weight: 500; line-height: 1.2; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
+.pill:active { transform: scale(0.97); }
+.pill:disabled, .sizes__tab:disabled { opacity: 0.5; cursor: not-allowed; }
+.pill--accent { background: var(--color-accent); color: var(--color-accent-ink); box-shadow: var(--pill-sheen), var(--shadow-card); }
+.pill--accent:hover { background: var(--color-accent-hi); }
+.pill--light { min-height: var(--hit); padding-inline: var(--space-md); background: var(--color-light); color: var(--color-ink); }
+.pill--light:hover { background: var(--color-accent-soft); }
+.textlink { color: var(--color-accent); font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.3em; transition: color var(--dur-short) var(--ease-out); }
+.textlink:hover { color: var(--color-accent-hi); }
+a { transition: color var(--dur-short) var(--ease-out); }
+
+/* ---------- 首屏 ---------- */
+.hero { position: relative; overflow: hidden; }
+.hero__grid { position: relative; display: grid; gap: var(--space-xl); padding-block: var(--space-xl) 0; }
+.hero__text { display: grid; gap: var(--space-lg); align-content: center; }
+.hero h1 { max-width: none; font-size: clamp(4rem, 10vw, 9rem); font-weight: 400; line-height: 1.12; letter-spacing: var(--tracking-display); }
+.hero .lead { max-width: 26em; color: var(--color-muted); font-size: var(--text-lead); line-height: 1.75; }
+.hero__more { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2xs) var(--space-md); font-size: var(--text-md); }
+.hero__more .textlink { display: inline-flex; align-items: center; min-height: var(--hit); }
+.hero__from { color: var(--color-muted); font-size: var(--text-sm); }
+
+/* 水光：手機上是頁面底下一整片光（不是一個框）；桌機上鋪滿右半邊，往左淡進白牆 */
+.hero__pool { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto var(--space-2xl) auto; margin-inline: calc(-1 * var(--gutter)); padding: var(--space-xl) var(--gutter) var(--space-2xl); }
+.light { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: var(--color-shade); pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, transparent, var(--color-ink) 22%); mask-image: linear-gradient(to bottom, transparent, var(--color-ink) 22%); }
+
+/* 洗澡的照片：躺在水光上的一張相片 */
+.hero__photo { position: relative; grid-row: 1 / 3; grid-column: 1; justify-self: end; width: 86%; margin: 0; }
+.hero__photo img, .store__photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
+.hero__photo img { object-position: 50% 38%; }
+.hero__photo::after, .store__photo::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-card); box-shadow: var(--photo-edge); pointer-events: none; }
+.photo-note { position: absolute; left: var(--space-sm); top: var(--space-sm); z-index: 1; padding: 0 var(--space-sm); border-radius: var(--radius-inner); background: color-mix(in oklab, var(--color-light) 86%, transparent); color: var(--color-ink-2); font-size: var(--text-note); line-height: 1.8; }
+
+/* 簽名：水光裡的預約單（只有這一張是透明卡片） */
+.ticket { position: relative; z-index: 1; grid-row: 2 / 4; grid-column: 1; justify-self: start; width: min(100%, 26rem); padding: var(--space-lg); border-radius: var(--radius-card); background: color-mix(in oklab, var(--color-light) 95%, transparent); box-shadow: var(--edge-light), var(--shadow-cast); }
+.ticket__title { max-width: none; font-family: var(--font-body); font-size: var(--text-lg); font-weight: 500; line-height: 1.4; letter-spacing: 0; }
+.ticket__rows { margin: var(--space-sm) 0 var(--space-md); }
+.ticket__row { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: var(--space-md); padding-block: var(--space-xs); border-top: 1px solid var(--color-rule); }
+.ticket__row:last-child { border-bottom: 1px solid var(--color-rule); }
+.ticket__row dt { color: var(--color-ink); font-weight: 500; }
+.ticket__row dd { margin: 0; color: var(--color-muted); }
+.ticket__go { width: 100%; min-height: 52px; font-size: var(--text-lg); }
+.ticket__foot { margin-top: var(--space-sm); color: var(--color-muted); font-size: var(--text-sm); text-align: center; }
+
+/* ---------- 區塊共用 ---------- */
+.section { padding-block: var(--section-gap-s); }
+.section__head { display: grid; gap: var(--space-sm); align-content: start; }
+.section__lead { max-width: 30em; color: var(--color-muted); }
+.split { display: grid; gap: var(--space-xl); }
+
+/* ---------- 價格：選體型 ---------- */
+.price__grid { display: grid; gap: var(--space-xl); }
+.sizes { display: grid; gap: var(--space-lg); }
+.sizes__tabs { display: none; }
+.sizes.is-js .sizes__tabs { display: flex; flex-wrap: wrap; gap: var(--space-2xs); width: fit-content; max-width: 100%; padding: var(--space-2xs); border-radius: var(--radius-pill); background: var(--color-paper-3); }
+.sizes__tab { min-height: var(--hit); padding-inline: var(--space-md); border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--color-ink-2); font-size: var(--text-md); font-weight: 500; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+.sizes__tab:hover { color: var(--color-ink); }
+.sizes__tab[aria-selected="true"] { background: var(--color-light); color: var(--color-ink); box-shadow: var(--edge-light), var(--shadow-card); }
+.sizes__panel { display: grid; gap: var(--space-sm); }
+.sizes:not(.is-js) .sizes__panel + .sizes__panel { margin-top: var(--space-lg); }
+.sizes__who { color: var(--color-ink); font-weight: 500; }
+.menu { width: 100%; border-collapse: collapse; }
+.menu th, .menu td { padding-block: var(--space-md); border-top: 1px solid var(--color-rule); vertical-align: baseline; }
+.menu tr:last-child > * { border-bottom: 1px solid var(--color-rule); }
+.menu th { padding-inline-end: var(--space-lg); color: var(--color-ink); font-size: var(--text-lg); font-weight: 500; text-align: start; }
+.menu__what { display: block; margin-top: var(--space-3xs); color: var(--color-muted); font-size: var(--text-sm); font-weight: 400; }
+.menu__price { color: var(--color-ink-2); font-size: var(--text-md); text-align: end; white-space: nowrap; }
+/* 手機：名稱和價格同一行，灰色說明放到下面用整列寬度（總部第 1 輪 3） */
+@media (max-width: 39.99rem) {
+  .menu, .menu tbody, .menu tr, .menu th { display: block; }
+  .menu tr { position: relative; padding-block: var(--space-md); border-top: 1px solid var(--color-rule); }
+  .menu tr:last-child { border-bottom: 1px solid var(--color-rule); }
+  .menu th, .menu td, .menu tr:last-child > * { padding: 0; border: 0; }
+  .menu__name { display: block; padding-inline-end: 8.5em; }
+  .menu__price { position: absolute; top: var(--space-md); right: 0; }
+}
+.menu__price .num { font-variant-numeric: tabular-nums; color: var(--color-ink); font-family: var(--font-display); font-size: var(--text-xl); font-weight: 400; }
+
+/* ---------- 怎麼預約：一列一件事 ---------- */
+.how { background: var(--color-paper-2); }
+.section__head--row { margin-bottom: var(--space-xl); }
+.lanes { margin: 0; padding: 0; list-style: none; }
+.lane { display: grid; gap: var(--space-2xs); padding-block: var(--space-md); border-top: 1px solid var(--color-rule); }
+.lane__lead { display: flex; align-items: baseline; gap: var(--space-sm); }
+.lane:last-child { border-bottom: 1px solid var(--color-rule); }
+.lane__who { flex: none; padding: 0 var(--space-sm); border: 1px solid var(--color-rule); border-radius: var(--radius-inner); color: var(--color-ink-2); font-size: var(--text-sm); line-height: 1.9; white-space: nowrap; }
+.lane--us .lane__who { border-color: transparent; background: var(--color-accent-soft); color: var(--color-accent-hi); }
+.lane__what { font-size: var(--text-lg); line-height: 1.5; }
+.lane__more { color: var(--color-muted); }
+
+/* ---------- 第一次來 ---------- */
+.prep { margin: 0; }
+.prep__item { display: grid; gap: var(--space-2xs); padding-block: var(--space-md); border-top: 1px solid var(--color-rule); }
+.prep__item:last-child { border-bottom: 1px solid var(--color-rule); }
+.prep__item dt { color: var(--color-ink); font-size: var(--text-lg); font-weight: 500; }
+.prep__item dd { margin: 0; max-width: 32em; }
+
+/* ---------- 店裡怎麼照顧：一句大字 ---------- */
+/* 首屏之後唯一一次大字（設計總監裁決 1）：桌機約 92px、手機 44px；斷在「，」後面 */
+.care__statement { max-width: none; font-size: clamp(2.75rem, 6.4vw, 6rem); font-weight: 400; line-height: 1.2; letter-spacing: var(--tracking-display); }
+.care__statement span { display: block; }
+.care__prose { display: grid; gap: var(--space-sm); max-width: 34em; margin-top: var(--space-xl); font-size: var(--text-lead); }
+.care__prose b { color: var(--color-ink); font-weight: 500; }
+
+/* ---------- 常見問題 ---------- */
+.faq h2 { margin-bottom: var(--space-lg); }
+.qa { border-top: 1px solid var(--color-rule); }
+.qa:last-of-type { border-bottom: 1px solid var(--color-rule); }
+.qa summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); min-height: 56px; padding-block: var(--space-sm); color: var(--color-ink); font-size: var(--text-lg); font-weight: 500; cursor: pointer; list-style: none; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::after { content: "+"; flex: none; width: 1.5em; color: var(--color-accent); font-size: var(--text-xl); font-weight: 400; line-height: 1; text-align: center; }
+.qa[open] summary::after { content: "−"; }
+.qa p { max-width: 34em; padding-bottom: var(--space-md); }
+
+/* ---------- 門市 ---------- */
+.store__grid { display: grid; gap: var(--space-xl); }
+.store__photo { position: relative; margin: 0; }
+.store__photo img { aspect-ratio: 4 / 3; object-position: 50% 50%; }
+.store__info { display: grid; gap: var(--space-lg); align-content: center; }
+.facts { display: grid; gap: var(--space-sm); margin: 0; }
+.facts > div { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: var(--space-md); padding-block: var(--space-sm); border-top: 1px solid var(--color-rule); }
+.facts > div:last-child { border-bottom: 1px solid var(--color-rule); }
+.facts dt { color: var(--color-muted); font-size: var(--text-sm); line-height: 1.9; }
+.facts dd { margin: 0; color: var(--color-ink); }
+.tel { display: inline-flex; align-items: center; min-height: var(--hit); color: var(--color-accent); font-weight: 500; text-underline-offset: 0.3em; }
+.store__go { justify-self: start; min-height: 52px; font-size: var(--text-lg); }
+
+/* ---------- 頁尾 ---------- */
+.footer { padding-block: var(--space-2xl) var(--space-xl); border-top: 1px solid var(--color-rule); background: var(--color-paper-2); color: var(--color-ink-2); font-size: var(--text-sm); }
+.footer a { color: var(--color-ink); text-underline-offset: 0.3em; }
+.footer a:hover { color: var(--color-accent); }
+.footer__grid { display: grid; gap: var(--space-xl); }
+.footer__name { color: var(--color-ink); font-size: var(--text-xl); font-weight: 500; letter-spacing: 0.04em; }
+.footer__head { margin-bottom: var(--space-xs); color: var(--color-ink); font-weight: 500; }
+.footer ul { margin: 0; padding: 0; list-style: none; }
+.footer li a { display: inline-flex; align-items: center; min-height: var(--hit); }
+.footer__legal { display: grid; gap: var(--space-xs); padding-top: var(--space-lg); border-top: 1px solid var(--color-rule); color: var(--color-muted); font-size: var(--text-note); }
+.footer__legal p { max-width: 40em; } /* 中文一行不超過 42 字 */
+.footer__legal a { white-space: nowrap; } /* 作者名、授權名稱不要斷在中間 */
+
+/* ---------- 桌機 ---------- */
+@media (min-width: 60rem) {
+  .slab__nav { display: flex; margin-inline-start: var(--space-lg); }
+  .hero { min-height: calc(100svh - var(--slab-h) - 1.6rem); display: grid; }
+  .hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--space-3xl); align-items: center; padding-block: var(--space-xl); }
+  .hero__pool { position: static; margin-inline: 0; padding: 0; grid-template-rows: auto var(--space-2xl) auto; }
+  .light { left: 54%; width: 46%; -webkit-mask-image: linear-gradient(to right, transparent, var(--color-ink) 28%); mask-image: linear-gradient(to right, transparent, var(--color-ink) 28%); }
+  .hero__photo { width: 82%; }
+  .ticket { width: 88%; }
+
+  .price__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--space-3xl); }
+  .section__head--row { grid-template-columns: 5fr 7fr; column-gap: var(--space-3xl); align-items: end; }
+  .lane { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--space-3xl); align-items: baseline; padding-block: var(--space-lg); }
+  .split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--space-3xl); }
+  .faq__in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--space-3xl); align-items: start; }
+  .faq__in h2 { grid-column: 1; grid-row: 1 / span 5; margin-bottom: 0; }
+  .faq__in .qa { grid-column: 2; }
+  .store__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--space-3xl); align-items: center; }
+  /* 頁尾第 2 欄對到 5:7 那條線（同價格、第一次來），第 3 欄對到 7:5 那條線（同門市） */
+  .footer__grid { grid-template-columns: minmax(0, 5fr) var(--space-3xl) minmax(0, 2fr) minmax(0, 5fr); column-gap: 0; }
+  .footer__brand { grid-column: 1; }
+  .footer__grid > .footer__col:nth-of-type(1) { grid-column: 3; padding-inline-end: var(--space-lg); }
+  .footer__grid > .footer__col:nth-of-type(2) { grid-column: 4; }
+  .footer__legal { grid-column: 1 / -1; }
+}

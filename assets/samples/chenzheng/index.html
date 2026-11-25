@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>晨蒸粿舖｜手工麻糬、草仔粿、紅龜粿（概念作品）</title>
+<meta name="description" content="虛構的在地點心店一頁式網站範例：手工麻糬、草仔粿、紅龜粿與年節禮盒，用 LINE 先訂、到店取貨。價格、電話、地址皆為示意。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+
+<p class="notice">概念作品，店家為虛構。頁面上的價格、電話、地址和營業時間都是示意。</p>
+
+<header class="mast">
+  <div class="container mast__row">
+    <nav class="mast__links" aria-label="頁面段落">
+      <a href="#fillings">今天的粿</a>
+      <a href="#giftbox">年節禮盒</a>
+      <a href="#order">怎麼訂</a>
+      <a href="#store">門市</a>
+    </nav>
+    <a class="mast__name" href="#main" aria-label="晨蒸粿舖，回到頁首">晨蒸粿舖</a>
+    <a class="btn btn--sm mast__cta" href="#line">加 LINE 訂購</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <figure class="hero__print stock">
+        <div class="photo photo--hero" data-slot="hero" data-alt="店裡清早揉粿糰或包餡的手，橫式，2400px 寬以上">
+          <img src="img/kneading-1280.jpg" srcset="img/kneading-960.jpg 960w, img/kneading-1280.jpg 1280w, img/kneading-1920.jpg 1920w" sizes="(min-width: 90rem) 1312px, 92vw" width="1920" height="1662" alt="撒了麵粉的木板上，一雙手正在揉一團白色麵糰" style="object-position: 40% 38%" fetchpriority="high">
+        </div>
+        <figcaption class="pencil">暫代照片，正式版換成店裡揉粿的實拍</figcaption>
+      </figure>
+      <div class="hero__base">
+        <h1 id="hero-title">今天蒸了<wbr>什麼粿？</h1>
+        <div class="hero__say">
+          <p class="lead">手工麻糬、草仔粿、紅龜粿，都是早上現蒸。用 LINE 先訂，來店直接拿。</p>
+          <div class="actions">
+            <a class="btn" href="#line">加 LINE 訂購</a>
+            <a class="link" href="tel:0200000000">打電話訂：02-0000-0000（示意）</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fillings" class="fillings" aria-labelledby="fillings-title">
+    <div class="container fillings__grid">
+      <div class="fillings__head">
+        <h2 id="fillings-title">每一種包什麼餡？</h2>
+        <p class="lead">點一張紙條，看內餡、份量和價格。</p>
+      </div>
+
+      <div class="strips" role="tablist" aria-label="選一種粿">
+        <button class="strip" type="button" role="tab" id="tab-mochi" aria-controls="panel-mochi" aria-selected="true" style="--stain: var(--stain-3)"><span>手工麻糬</span></button>
+        <button class="strip" type="button" role="tab" id="tab-caozai" aria-controls="panel-caozai" aria-selected="false" tabindex="-1" style="--stain: var(--stain-2)"><span>草仔粿</span></button>
+        <button class="strip" type="button" role="tab" id="tab-redturtle" aria-controls="panel-redturtle" aria-selected="false" tabindex="-1" style="--stain: var(--stain-1)"><span>紅龜粿</span></button>
+      </div>
+
+      <div class="labels">
+        <article class="label stock" role="tabpanel" tabindex="0" id="panel-mochi" aria-labelledby="tab-mochi">
+          <h3>手工麻糬</h3>
+          <p>糯米糰當天揉，現包現沾粉。</p>
+          <dl class="facts">
+            <div><dt>口味</dt><dd>花生粉、芝麻粉</dd></div>
+            <div><dt>份量</dt><dd>一盒六顆</dd></div>
+          </dl>
+          <p class="price"><span class="price__num">NT$120</span><small>示意價格</small></p>
+        </article>
+        <article class="label stock" role="tabpanel" tabindex="0" id="panel-caozai" aria-labelledby="tab-caozai">
+          <h3>草仔粿</h3>
+          <p>外皮揉進艾草，墊一片葉子下去蒸。</p>
+          <dl class="facts">
+            <div><dt>口味</dt><dd>菜脯、蘿蔔絲（鹹的）</dd></div>
+            <div><dt>份量</dt><dd>一顆</dd></div>
+          </dl>
+          <p class="price"><span class="price__num">NT$35</span><small>示意價格</small></p>
+        </article>
+        <article class="label stock" role="tabpanel" tabindex="0" id="panel-redturtle" aria-labelledby="tab-redturtle">
+          <h3>紅龜粿</h3>
+          <p>用木頭粿模壓出龜殼紋，拜拜、滿月都用得到。</p>
+          <dl class="facts">
+            <div><dt>口味</dt><dd>紅豆沙（甜的）</dd></div>
+            <div><dt>份量</dt><dd>一顆</dd></div>
+          </dl>
+          <p class="price"><span class="price__num">NT$35</span><small>示意價格</small></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="batch" aria-labelledby="batch-title">
+    <div class="container batch__grid">
+      <div class="batch__text">
+        <h2 id="batch-title">為什麼要前一天訂？</h2>
+        <p class="dropcap">在地小店，開在示意區的市場口（地點為示意），做給附近街坊吃。每天清早揉粿、包餡、上蒸籠，一天只蒸幾籠，賣完就收。</p>
+        <p>想要的口味和數量，前一天用 LINE 傳來，我們先幫你留好。當天來買也可以，只是不一定還有。</p>
+      </div>
+      <figure class="batch__figure">
+        <div class="photo photo--batch" data-slot="hands" data-alt="包餡或把粿放進蒸籠的手，直式 4:5">
+          <img src="img/baker-hands-1280.jpg" srcset="img/baker-hands-960.jpg 960w, img/baker-hands-1280.jpg 1280w, img/baker-hands-1920.jpg 1920w" sizes="(min-width: 60rem) 45vw, 92vw" width="1920" height="1282" alt="桌上撒著麵粉，雙手把麵糰往下壓" style="object-position: 56% 60%" loading="lazy">
+        </div>
+        <figcaption class="pencil">暫代照片，正式版換成店裡包餡或上蒸籠的實拍</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="giftbox" class="giftbox" aria-labelledby="giftbox-title">
+    <div class="container giftbox__grid">
+      <div class="giftbox__text">
+        <h2 id="giftbox-title">過年送禮，有禮盒嗎？</h2>
+        <p class="lead">有。三種粿裝成一盒，年節前開放預訂。</p>
+        <p>取貨日在訂購時跟我們說，當天早上蒸好裝盒。</p>
+      </div>
+      <article class="offer stock" aria-labelledby="offer-title">
+        <h3 id="offer-title">年節禮盒</h3>
+        <ul class="offer__list">
+          <li><span>紅龜粿</span><span class="num">4 顆</span></li>
+          <li><span>草仔粿</span><span class="num">4 顆</span></li>
+          <li><span>手工麻糬</span><span class="num">6 顆</span></li>
+        </ul>
+        <p class="price"><span class="price__num">NT$380</span><small>示意價格，一盒（單買合計 NT$400）</small></p>
+        <a class="btn" href="#line">用 LINE 預訂禮盒</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="order" class="order" aria-labelledby="order-title">
+    <div class="container order__grid">
+      <div class="order__head">
+        <h2 id="order-title">怎麼訂？</h2>
+        <p class="lead">三種方式都可以，取貨時再付錢。</p>
+      </div>
+      <div class="ways">
+        <div class="way">
+          <h3>用 LINE 訂</h3>
+          <ol>
+            <li>加入好友</li>
+            <li>傳口味、數量和取貨日</li>
+            <li>收到確認訊息，到店拿</li>
+          </ol>
+          <a class="link" href="#line">加 LINE 好友</a>
+        </div>
+        <div class="way">
+          <h3>打電話訂</h3>
+          <p>營業時間打 <a class="link" href="tel:0200000000">02-0000-0000</a>（示意），說口味、數量和幾點來拿。</p>
+        </div>
+        <div class="way">
+          <h3>直接來店</h3>
+          <p>現場有什麼就賣什麼。想要的口味，建議先訂。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="store" class="store" aria-labelledby="store-title">
+    <div class="container store__grid">
+      <div class="store__text">
+        <h2 id="store-title">店在哪？幾點開？</h2>
+        <p class="store__addr">示意市示意區範例路 1 號<small>（示意地址）</small></p>
+        <p><a class="link" href="#map">在 Google 地圖開啟路線（示意連結）</a></p>
+        <div class="actions">
+          <a class="btn" href="#line">加 LINE 訂購</a>
+          <a class="link" href="tel:0200000000">02-0000-0000（示意）</a>
+        </div>
+      </div>
+      <table class="hours">
+        <caption>營業時間（示意），賣完會提早收</caption>
+        <thead><tr><th scope="col">星期</th><th scope="col">時間</th></tr></thead>
+        <tbody>
+          <tr class="is-closed"><th scope="row">週一</th><td>公休</td></tr>
+          <tr><th scope="row">週二到週五</th><td class="num">07:00～13:00</td></tr>
+          <tr><th scope="row">週六、週日</th><td class="num">06:30～13:00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="colophon">
+  <div class="container colophon__grid">
+    <p class="colophon__name">晨蒸粿舖</p>
+    <div class="colophon__text">
+      <p><strong>概念作品，店家為虛構。</strong>價格、電話、地址和營業時間都是示意。</p>
+      <p>網頁設計：懶人救星</p>
+      <p data-credits>照片為暫代，來自 Wikimedia Commons，兩張都已調色並裁切：<a href="https://commons.wikimedia.org/wiki/File:Kneading_bread_by_hand.jpg">Anna.Massini</a>（<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>）、<a href="https://commons.wikimedia.org/wiki/File:Baker_woman%27s_hands_kneading_bread_dough.jpg">Shixart1985</a>（<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>）</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[role="tablist"]').forEach((list) => {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const show = (tab, focus) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  };
+  show(tabs.find((t) => t.getAttribute('aria-selected') === 'true') || tabs[0], false);
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => show(tab, false));
+    tab.addEventListener('keydown', (e) => {
+      const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (step) { e.preventDefault(); show(tabs[(i + step + tabs.length) % tabs.length], true); }
+      if (e.key === 'Home') { e.preventDefault(); show(tabs[0], true); }
+      if (e.key === 'End') { e.preventDefault(); show(tabs[tabs.length - 1], true); }
+    });
+  });
+});
+</script>
+<script>window.hallmarkSlots = (m) => { for (const [k, v] of Object.entries(m)) { const s = document.querySelector(`[data-slot="${k}"]`); if (!s) continue; const im = new Image(); im.src = typeof v === 'string' ? v : v.src; im.alt = (typeof v === 'object' && v.alt) || s.dataset.alt || ''; s.querySelectorAll(':scope > img').forEach((o) => o.remove()); s.prepend(im); } };
+document.querySelectorAll('[data-slot] img').forEach((i) => { if (i.complete && !i.naturalWidth) i.remove(); else i.addEventListener('error', () => i.remove(), { once: true }); });</script>
+</body>
+</html>
