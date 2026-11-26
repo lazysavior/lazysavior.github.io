@@ -1,6 +1,6 @@
 /* Hallmark · shape: 開場兩句話＋六件作品＋報價單 · genre: editorial · theme: custom · job: hire · idea: "固定報價、先看初稿，用真的作品說話" · vibe: "白紙黑字的報價單，蓋上朱紅印章" · hero: 左邊兩行大字與兩個按鈕，右邊真的後台截圖疊上 App 畫面 · nav: 品牌字、四個錨點連結、一個 LINE 按鈕（刻意的常見做法，報價網站要讓人一眼找到聯絡方式） · footer: 一行工作室名稱 · imagery: the product · signature: 報價單右上角的朱紅印章
  * axes: custom · contrast: pass · fold: pass · v2.0.0 */
-/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V, 作品區容易變成千篇一律的左文右圖；六件作品用六種構圖拉開：同一家點心店的網站和後台並排（中間的箭頭寫「老闆娘把 LINE 訂單記進後台」）、可切換的手機畫面、截圖疊手機圖在左字在右（寵物美容）、真截圖加 LINE 示範、網站地圖、三張社群圖排一列字在下 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V, 作品區容易變成千篇一律的左文右圖；六件作品用六種構圖拉開：同一家點心店的網站和後台並排（中間的箭頭寫「老闆娘把 LINE 訂單記進後台」）、可切換的手機畫面、截圖疊手機圖在左字在右（寵物美容）、真截圖加 LINE 示範、網站地圖、LINE 圖文選單和手機畫面並排在上、字在下、三張小貼文當配角 */
 
 /* 懶人救星 網站設計｜作品集
    色彩：紙 --paper、墨 --ink、格線 --rule、印泥紅 --seal（只用在印章）、LINE 綠 --line（只用在 LINE 按鈕）
@@ -256,9 +256,19 @@ main > section { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter
 .feed-item { margin: 0; }
 .feed-item a { display: block; border-radius: 8px; overflow: hidden; border: 1px solid var(--rule); }
 .feed-item a:hover img { opacity: .92; }
+.feed-item a:focus-visible { outline-offset: -3px; } /* 一列可以左右滑的貼文會切掉外面的焦點框，改畫在圖的內側，四邊都看得到 */
 .feed-item figcaption { font-size: 15px; color: var(--muted); margin-top: 12px; }
 .feed-text { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: var(--col-gap); margin-top: 40px; align-items: start; }
 .feed-text .facts { margin-top: 20px; }
+
+/* 作品六：早午餐店 LINE 官方帳號整套（圖文選單是主角：選單原圖和放進手機的畫面並排、一樣高；三張 IG 貼文當配角，小小一列排在說明下面） */
+/* 1.854 ＝ 選單原圖寬高比 2500/1686 ÷ 手機畫面寬高比 1080/1350，兩張圖才會一樣高 */
+.line-set { display: grid; grid-template-columns: minmax(0, 1.854fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.feed-mini { margin-top: 28px; gap: 16px; }
+.feed-mini .feed-item figcaption { margin-top: 8px; }
+
+/* 副標裡的「｜」：會換行的地方直接拆成兩行、藏起「｜」，不讓它掛在行尾 */
+.case-line .kind-sep { display: block; height: 0; overflow: hidden; }
 
 /* ---------- 報價單（這頁最重的一筆） ---------- */
 .quote-wrap { padding-top: clamp(56px, 8vw, 104px) !important; padding-bottom: clamp(56px, 8vw, 104px) !important; border-top: 1px solid var(--rule); }
@@ -399,6 +409,10 @@ dialog iframe { flex: 1; width: 100%; min-height: 0; border: 0; }
   /* 往右延伸到螢幕邊緣（左邊照樣對齊內容），露出的下一張才看得出是刻意的 */
   .feed { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); }
   .feed-item { scroll-snap-align: start; }
+  .feed-mini { grid-auto-columns: 44%; }
+  .line-set { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .line-phone { width: 72%; }
+  .kind-sep { display: block; height: 0; overflow: hidden; }
   .steps ol { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .sitemap { grid-template-columns: minmax(0, 1fr); padding-top: 56px; }
   .sitemap::after { display: none; }

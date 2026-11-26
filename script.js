@@ -53,4 +53,12 @@
     }, { threshold: 0.6 });
     io.observe(seal);
   }
+
+  // 手機上 IG 貼文是一列可以左右滑的圖；用鍵盤 Tab 選到某一張時，自動把那一張整張捲進畫面
+  document.querySelectorAll('.feed').forEach((list) => {
+    list.addEventListener('focusin', (e) => {
+      const item = e.target.closest('.feed-item');
+      if (item) item.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
+  });
 })();
