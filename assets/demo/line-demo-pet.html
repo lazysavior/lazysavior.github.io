@@ -1,67 +1,70 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>寵物美容沙龍 · LINE Demo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="line-demo.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=380">
+<title>寵物美容｜LINE 預約示範畫面</title>
+<meta name="description" content="作品集裡的 LINE 預約示範畫面：寵物美容。價格、優惠都是示意。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="line-demo.css">
+<style>
+  /* 這一頁的照片：照片從左邊開始放、放大 1.15 倍：左上是暗的背景，店名放在那裡；洗澡的小狗在右邊的水槽裡，臉朝下，是畫面裡最先看到的。整張調暗 10% */
+  .hero-photo { object-position: 0% 50%; --photo-transform: scale(1.15); --photo-filter: brightness(0.9); }
+</style>
 </head>
-<body class="theme-pet">
-
-<div class="phone-frame">
-  <div class="phone-screen">
-
-    <div class="status-bar">
-      <span>9:41</span>
-      <span class="right">
-        <span>●●●●</span><span>📶</span><span>🔋</span>
-      </span>
-    </div>
-
-    <div class="liff-area">
-
-      <div class="brand-header">
-        <div class="brand-avatar avatar-pet">🐾</div>
-        <div class="brand-tag">寵物美容沙龍</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hot-row">
-          <span class="hot-badge">🔥 HOT</span>
-          <span class="hot-banner">✨ 暑期剃毛優惠開放 ✨</span>
+<body class="shop-pet">
+<div class="phone">
+  <div class="screen">
+    <main class="liff">
+      <header class="hero">
+        <div class="status" aria-hidden="true">
+          <span>9:41</span>
+          <span class="sys">
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 12v-1M6 12V9M10 12V6M14 12V3"/></svg>
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 5.5a10 10 0 0 1 14 0M4.5 8.2a6.4 6.4 0 0 1 9 0M7.2 10.8a2.6 2.6 0 0 1 3.6 0"/></svg>
+            <svg class="icon" width="26" height="14" viewBox="0 0 26 14"><rect x="1.5" y="2.5" width="20" height="9" rx="2.5"/><path d="M24 5.5v3"/><rect x="3.5" y="4.5" width="13" height="5" rx="1" fill="currentColor" stroke="none"/></svg>
+          </span>
         </div>
-        <div class="brand-row">
-          <span class="icon">🐾</span>
+        <img class="hero-photo" src="photos/pet.jpg" alt="一隻淋濕的捲毛小狗站在不鏽鋼水槽裡洗澡，旁邊有一隻手扶著">
+        <div class="hero-text">
           <h1>寵物美容</h1>
-          <span class="icon">✨</span>
+          <p class="hero-line">專業美容師造型<br>預約時段免排隊</p>
+          <p class="demo-tag">示範畫面</p>
         </div>
-        <p class="sub-line"><span class="em">✨</span>專業寵物造型師，安心把毛孩交給我們。</p>
-        <p class="sub-line"><span class="em">📌</span>線上預約時段，到店免排隊。</p>
-      </div>
+      </header>
 
-      <div class="srv-stack">
-        <button class="srv blue"><span class="em">📲</span><span class="label">立即預約美容</span><span class="arrow">→</span></button>
-        <button class="srv yellow"><span class="em">🎨</span><span class="label">本月造型優惠</span><span class="arrow">→</span></button>
-        <button class="srv red"><span class="em">🔥</span><span class="label">新客首次 8 折</span><span class="arrow">→</span></button>
-      </div>
+      <section class="book">
+        <button class="primary" type="button">立即預約
+          <svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9h10M10 5l4 4-4 4"/></svg>
+        </button>
+        <p class="note">新客首次 8 折（示意）</p>
+      </section>
 
-      <div class="divider">✨ 👇 請選擇您需要的服務 👇 ✨</div>
+      <section class="services" aria-labelledby="srv-title">
+        <div class="services-head">
+          <h2 id="srv-title">服務項目</h2>
+          <p>價格為示意</p>
+        </div>
+        <ul class="srv-list">
+          <li><button class="srv" type="button"><span class="srv-name">洗澡・吹整</span><span class="srv-meta">約 60 分鐘・NT$600 起</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">剪毛造型</span><span class="srv-meta">約 120 分鐘・NT$1,200 起</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">剪趾甲・清耳朵</span><span class="srv-meta">約 15 分鐘・NT$150</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">牙齒清潔</span><span class="srv-meta">約 20 分鐘・NT$300</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">本月造型</span><span class="srv-meta">這個月的造型作品</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">完整服務價目</span><span class="srv-meta">依體型和毛量</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+        </ul>
+      </section>
 
-      <div class="srv-stack">
-        <button class="srv green"><span class="em">🛁</span><span class="label">全身洗澡 SPA</span><span class="arrow">→</span></button>
-        <button class="srv blue"><span class="em">✂️</span><span class="label">剪毛造型</span><span class="arrow">→</span></button>
-        <button class="srv dark"><span class="em">🐶</span><span class="label">趾甲修剪</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">🦷</span><span class="label">牙齒清潔</span><span class="arrow">→</span></button>
-        <button class="srv cream"><span class="em">📋</span><span class="label">完整服務價目</span><span class="arrow">→</span></button>
-        <button class="srv pink"><span class="em">💬</span><span class="label">美容師諮詢</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">📅</span><span class="label">我的預約紀錄</span><span class="arrow">→</span></button>
-      </div>
-
-    </div>
+      <nav class="more" aria-label="其他">
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 4.5h12v7.5H8l-3 2.5V12H3z"/></svg>美容師諮詢</button>
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="3" y="4" width="12" height="11" rx="2"/><path d="M3 8h12M6.5 2.5v3M11.5 2.5v3"/></svg>我的預約</button>
+      </nav>
+      <p class="fine">示範畫面，價格和優惠都是示意</p>
+      <p class="credit">照片：<a href="https://commons.wikimedia.org/wiki/File:EM_DSC_1337_(2826382183).jpg" rel="noopener" target="_blank">Eddie Maloney</a>（<a href="https://creativecommons.org/licenses/by-sa/2.0/" rel="noopener" target="_blank">CC BY-SA 2.0</a>，Wikimedia Commons），已裁切、調暗</p>
+    </main>
   </div>
 </div>
-
 </body>
 </html>

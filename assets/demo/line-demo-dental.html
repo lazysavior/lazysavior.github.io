@@ -1,67 +1,70 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>牙醫診所 · LINE Demo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="line-demo.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=380">
+<title>牙醫診所｜LINE 預約示範畫面</title>
+<meta name="description" content="作品集裡的 LINE 預約示範畫面：牙醫診所。價格、優惠都是示意。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="line-demo.css">
+<style>
+  /* 這一頁的照片：放大 1.45 倍，左上是深色木頭櫃子，店名放在櫃子上；診療椅在右下。整張調暗 16%，櫃子的反光才不會讓小字不清楚 */
+  .hero-photo { object-position: 14% 0%; --photo-transform: scale(1.45); --photo-filter: brightness(0.84); }
+</style>
 </head>
-<body class="theme-dental">
-
-<div class="phone-frame">
-  <div class="phone-screen">
-
-    <div class="status-bar">
-      <span>9:41</span>
-      <span class="right">
-        <span>●●●●</span><span>📶</span><span>🔋</span>
-      </span>
-    </div>
-
-    <div class="liff-area">
-
-      <div class="brand-header">
-        <div class="brand-avatar avatar-dental">🦷</div>
-        <div class="brand-tag">牙醫診所</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hot-row">
-          <span class="hot-badge">🔥 HOT</span>
-          <span class="hot-banner">✨ 新客免費口腔檢查 ✨</span>
+<body class="shop-dental">
+<div class="phone">
+  <div class="screen">
+    <main class="liff">
+      <header class="hero">
+        <div class="status" aria-hidden="true">
+          <span>9:41</span>
+          <span class="sys">
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 12v-1M6 12V9M10 12V6M14 12V3"/></svg>
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 5.5a10 10 0 0 1 14 0M4.5 8.2a6.4 6.4 0 0 1 9 0M7.2 10.8a2.6 2.6 0 0 1 3.6 0"/></svg>
+            <svg class="icon" width="26" height="14" viewBox="0 0 26 14"><rect x="1.5" y="2.5" width="20" height="9" rx="2.5"/><path d="M24 5.5v3"/><rect x="3.5" y="4.5" width="13" height="5" rx="1" fill="currentColor" stroke="none"/></svg>
+          </span>
         </div>
-        <div class="brand-row">
-          <span class="icon">🦷</span>
+        <img class="hero-photo" src="photos/dental.jpg" alt="牙醫診間：一整排深色木頭櫃子，右下角是米色診療椅的一角">
+        <div class="hero-text">
           <h1>牙醫診所</h1>
-          <span class="icon">✨</span>
+          <p class="hero-line">線上預約看診<br>到診所不用久候</p>
+          <p class="demo-tag">示範畫面</p>
         </div>
-        <p class="sub-line"><span class="em">✨</span>專業醫師團隊，給您安心微笑。</p>
-        <p class="sub-line"><span class="em">📌</span>線上預約看診，避免現場久候。</p>
-      </div>
+      </header>
 
-      <div class="srv-stack">
-        <button class="srv blue"><span class="em">📲</span><span class="label">立即預約看診</span><span class="arrow">→</span></button>
-        <button class="srv yellow"><span class="em">🔍</span><span class="label">免費口腔檢查</span><span class="arrow">→</span></button>
-        <button class="srv red"><span class="em">🔥</span><span class="label">限時洗牙特價</span><span class="arrow">→</span></button>
-      </div>
+      <section class="book">
+        <button class="primary" type="button">立即預約
+          <svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9h10M10 5l4 4-4 4"/></svg>
+        </button>
+        <p class="note">初診免費口腔檢查（示意）</p>
+      </section>
 
-      <div class="divider">✨ 👇 請選擇您需要的服務 👇 ✨</div>
+      <section class="services" aria-labelledby="srv-title">
+        <div class="services-head">
+          <h2 id="srv-title">服務項目</h2>
+          <p>價格為示意</p>
+        </div>
+        <ul class="srv-list">
+          <li><button class="srv" type="button"><span class="srv-name">洗牙・口腔檢查</span><span class="srv-meta">約 30 分鐘・NT$150 起</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">補牙</span><span class="srv-meta">約 40 分鐘・看過再報價</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">牙齒美白</span><span class="srv-meta">約 60 分鐘・NT$6,000 起</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">齒列矯正諮詢</span><span class="srv-meta">約 30 分鐘・免費</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">植牙諮詢</span><span class="srv-meta">約 30 分鐘・免費</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">完整療程價目</span><span class="srv-meta">所有療程和收費</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+        </ul>
+      </section>
 
-      <div class="srv-stack">
-        <button class="srv green"><span class="em">🦷</span><span class="label">一般洗牙 / 保健</span><span class="arrow">→</span></button>
-        <button class="srv blue"><span class="em">✨</span><span class="label">齒列矯正諮詢</span><span class="arrow">→</span></button>
-        <button class="srv dark"><span class="em">⚪</span><span class="label">牙齒美白療程</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">💎</span><span class="label">植牙諮詢</span><span class="arrow">→</span></button>
-        <button class="srv cream"><span class="em">📋</span><span class="label">完整療程價目</span><span class="arrow">→</span></button>
-        <button class="srv pink"><span class="em">💬</span><span class="label">真人客服</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">📅</span><span class="label">我的看診紀錄</span><span class="arrow">→</span></button>
-      </div>
-
-    </div>
+      <nav class="more" aria-label="其他">
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 4.5h12v7.5H8l-3 2.5V12H3z"/></svg>真人客服</button>
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="3" y="4" width="12" height="11" rx="2"/><path d="M3 8h12M6.5 2.5v3M11.5 2.5v3"/></svg>我的看診紀錄</button>
+      </nav>
+      <p class="fine">示範畫面，價格和優惠都是示意</p>
+      <p class="credit">照片：<a href="https://commons.wikimedia.org/wiki/File:A_dental_chair_in_a_dentist_clinic_in_North_Carolina,_United_States.jpg" rel="noopener" target="_blank">Harrison Keely</a>（<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>，Wikimedia Commons），已裁切、調暗</p>
+    </main>
   </div>
 </div>
-
 </body>
 </html>

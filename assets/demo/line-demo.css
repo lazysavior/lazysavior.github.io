@@ -1,263 +1,254 @@
-/* LINE LIFF Demo — shared styles */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:'Noto Sans TC',-apple-system,sans-serif}
-body{
-  background:linear-gradient(135deg,#0a0e1a 0%,#131825 100%);
-  display:flex;align-items:center;justify-content:center;
-  padding:14px;overflow:hidden;
+/* Hallmark · shape: LINE 預約示範（手機畫面，作品集裡的 iframe）＋六個行業共用一套版型 · genre: atmospheric · theme: custom · job: book · hero: 店家照片鋪滿畫面上方，店名直接浮在照片上 · nav: none · footer: 一行示範說明 · imagery: photographs, Wikimedia Commons（CC0／公眾領域／CC BY／CC BY-SA）, natural · signature: 每個行業換一張真實照片和一個主色，結構完全一樣
+ * axes: light/sans/per-shop-accent · posture: quiet（照片負責表情，其他地方只有一顆主色按鈕） · contrast: 字放在照片的暗處、加很淡的影子 · fold: 第一屏看得到照片、店名、立即預約和前三項服務 · v2.0.0 */
+
+/* LINE 預約示範：六個行業（美甲、牙醫、寵物美容、健身、汽車保養、房仲）共用這一份樣式。
+   每個行業只換三樣：body 上的 shop-xxx（主色和淺底色）、上面那張照片、文字。
+   這是作品集裡 iframe 的手機畫面：iframe 380×760，縮小 0.79 倍顯示。字至少 14px、按鈕至少 44px 高。
+   不放 LINE 的商標和官方圖示，也不用 LINE 的綠色。 */
+
+:root {
+  /* 共用的中性色 */
+  --bezel: oklch(18% 0.01 260);
+  --notch: oklch(12% 0.005 260);
+  --paper: oklch(99.5% 0.005 250); /* 清單的白底：不偏黃，放在牙醫、房仲這些冷色淺底上也是乾淨的白（帶一點點冷色，檢查器要中性色至少 0.005 彩度） */
+  --ink: oklch(24% 0.015 260);
+  --ink-2: oklch(42% 0.015 260);
+  --hair: oklch(90% 0.008 260);
+  --on-photo: oklch(99% 0.004 90);
+  --photo-shadow: oklch(15% 0.02 230 / 0.45);
+  --photo-shadow-soft: oklch(15% 0.02 230 / 0.25);
+  --photo-shadow-strong: oklch(15% 0.02 230 / 0.6);
+  --photo-wait: oklch(30% 0.015 260);
+  --press: oklch(20% 0.02 260 / 0.06);
+  --focus: oklch(55% 0.17 255);
+
+  /* 六個行業的主色、按下去的顏色、淺底色（下面 shop-xxx 把它們接到 --brand 這幾個名字上） */
+  /* 美甲：照片裡指甲的乾燥玫瑰色 */
+  --nail: oklch(46% 0.08 355);
+  --nail-press: oklch(40% 0.08 355);
+  --nail-tint: oklch(97% 0.012 355);
+  /* 牙醫：診間螢幕的藍 */
+  --dental: oklch(44% 0.12 262);
+  --dental-press: oklch(38% 0.12 262);
+  --dental-tint: oklch(97% 0.01 262);
+  /* 寵物美容：洗澡台的紫 */
+  --pet: oklch(46% 0.13 305);
+  --pet-press: oklch(40% 0.13 305);
+  --pet-tint: oklch(97% 0.012 305);
+  /* 健身：牆和地板的磚紅 */
+  --fitness: oklch(46% 0.15 27);
+  --fitness-press: oklch(40% 0.15 27);
+  --fitness-tint: oklch(97% 0.01 27);
+  /* 汽車保養：修車廠燈光的黃銅色 */
+  --auto: oklch(48% 0.1 70);
+  --auto-press: oklch(42% 0.1 70);
+  --auto-tint: oklch(97% 0.012 75);
+  /* 房仲：黃昏天空靠地平線的深青 */
+  --house: oklch(40% 0.07 220);
+  --house-press: oklch(34% 0.07 220);
+  --house-tint: oklch(97% 0.008 220);
+
+  --brand: var(--nail);
+  --brand-press: var(--nail-press);
+  --tint: var(--nail-tint);
+  --on-brand: oklch(99% 0.004 90);
+
+  --sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
 }
 
-.phone-frame{
-  width:380px;height:760px;
-  background:#000;border-radius:46px;
-  padding:12px;
-  box-shadow:0 30px 80px -10px rgba(6,199,85,.22),
-             0 0 0 1px rgba(255,255,255,.08),
-             inset 0 0 0 2px #2a2a2a;
-  position:relative;
+/* ── 六個行業：一個主色、一個淺底色 ── */
+.shop-nail { --brand: var(--nail); --brand-press: var(--nail-press); --tint: var(--nail-tint); }
+.shop-dental { --brand: var(--dental); --brand-press: var(--dental-press); --tint: var(--dental-tint); }
+.shop-pet { --brand: var(--pet); --brand-press: var(--pet-press); --tint: var(--pet-tint); }
+.shop-fitness { --brand: var(--fitness); --brand-press: var(--fitness-press); --tint: var(--fitness-tint); }
+.shop-auto { --brand: var(--auto); --brand-press: var(--auto-press); --tint: var(--auto-tint); }
+.shop-house { --brand: var(--house); --brand-press: var(--house-press); --tint: var(--house-tint); }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; overflow-x: clip; }
+html, body { height: 100%; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: transparent; /* 手機外面露出作品集自己的底色 */
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-break: strict;
 }
-.phone-frame::before{
-  content:'';
-  position:absolute;top:18px;left:50%;
-  transform:translateX(-50%);
-  width:120px;height:26px;
-  background:#000;border-radius:0 0 16px 16px;
-  z-index:5;
+p, h1, h2, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+button { font: inherit; color: inherit; }
+button:disabled { cursor: not-allowed; opacity: 0.5; }
+h1, h2 { text-wrap: balance; }
+
+/* ── 手機外框 ── */
+.phone {
+  position: relative;
+  width: 380px;
+  height: 760px;
+  padding: 12px;
+  border-radius: 48px;
+  background: var(--bezel);
+}
+.phone::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  z-index: 3;
+  width: 96px;
+  height: 28px;
+  border-radius: 16px;
+  transform: translateX(-50%);
+  background: var(--notch);
+}
+.screen {
+  position: relative;
+  height: 100%;
+  border-radius: 36px;
+  overflow: hidden;
+  background: var(--tint);
 }
 
-.phone-screen{
-  width:100%;height:100%;
-  background:#dbe2eb;
-  border-radius:34px;
-  overflow:hidden;display:flex;flex-direction:column;
-  position:relative;
+/* 狀態列：疊在照片上，用線條圖形，不用表情符號 */
+.status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 8px 28px 0;
+  color: var(--on-photo);
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
+.status { filter: drop-shadow(0 1px 2px var(--photo-shadow)); } /* 照片最上面比較亮時，時間和電池還看得到 */
+.status .sys { display: flex; align-items: center; gap: 4px; }
+.status svg { display: block; }
 
-.status-bar{
-  height:38px;display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 26px 6px;font-size:12px;font-weight:600;color:#1a1a1a;
-  flex-shrink:0;
+/* 可以捲動的內容 */
+.liff {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-bottom: 16px; /* 用鍵盤選到下面的服務時，焦點框不會擠在手機圓角上 */
+  scrollbar-width: none;
 }
-.status-bar .right{display:flex;gap:5px;align-items:center;font-size:11px}
+.liff::-webkit-scrollbar { display: none; }
 
-.liff-area{
-  flex:1;overflow-y:auto;overflow-x:hidden;
-  padding:12px 14px 24px;
-  scrollbar-width:none;
+/* ── 上面那張照片：鋪滿，字直接浮在照片上，下面不墊色塊 ── */
+.hero {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background: var(--photo-wait); /* 照片還沒載到時先是深色，白字還看得到 */
+  color: var(--on-photo);
 }
-.liff-area::-webkit-scrollbar{display:none}
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  color: transparent; /* 照片網址壞掉時，不把替代文字印在狀態列上；讀屏軟體還是念得到 */
+  /* 每一頁可以再放大、左右翻轉（--photo-transform，原點在左上角），或整張微微調暗（--photo-filter），讓左上角放字的地方安靜、偏暗 */
+  transform-origin: 0 0;
+  transform: var(--photo-transform, none);
+  filter: var(--photo-filter, none);
+}
+.hero-text {
+  position: relative;
+  padding: 72px 24px 0;
+  color: var(--on-photo);
+  text-shadow: 0 1px 3px var(--photo-shadow), 0 0 20px var(--photo-shadow-soft);
+}
+.hero-text h1 { font-size: 30px; font-weight: 700; line-height: 1.25; letter-spacing: 0.04em; }
+.hero-line { margin-top: 12px; font-size: 15px; font-weight: 500; line-height: 1.6; }
+.demo-tag { margin-top: 12px; font-size: 14px; font-weight: 500; line-height: 1.4; }
+/* 小字比較細，影子內圈加強一點，只讓筆畫和照片分開，看起來不是色塊 */
+.hero-line, .demo-tag { text-shadow: 0 0 3px var(--photo-shadow-strong), 0 1px 8px var(--photo-shadow), 0 0 24px var(--photo-shadow-soft); }
 
-.brand-header{
-  display:flex;flex-direction:column;align-items:flex-start;
-  margin-bottom:10px;
+/* ── 主要按鈕：一顆，用主色 ── */
+.book { padding: 20px 16px 8px; }
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--brand);
+  color: var(--on-brand);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
 }
-.brand-avatar{
-  width:38px;height:38px;border-radius:50%;
-  display:grid;place-items:center;
-  font-size:18px;
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
-}
-.brand-tag{
-  font-size:10px;color:#475569;margin-top:3px;font-weight:600;
-}
+.primary:hover { background: var(--brand-press); }
+.primary:active { background: var(--brand-press); transform: translateY(1px); }
+.note { margin-top: 12px; font-size: 14px; line-height: 1.5; color: var(--ink-2); text-align: center; }
 
-.hero-card{
-  background:#0f1115;color:#fff;
-  border-radius:14px;
-  padding:18px 18px 20px;
-  box-shadow:0 8px 20px rgba(0,0,0,.18);
+/* ── 其他服務：安靜的清單，同一種樣式，用細線分開 ── */
+.services { padding: 16px 16px 0; }
+.services-head { display: flex; align-items: baseline; justify-content: space-between; padding: 0 4px 8px; }
+.services-head h2 { font-size: 15px; font-weight: 700; color: var(--ink-2); letter-spacing: 0.04em; }
+.services-head p { font-size: 14px; color: var(--ink-2); }
+.srv-list { border-radius: 12px; background: var(--paper); overflow: hidden; }
+.srv-list li + li { border-top: 1px solid var(--hair); }
+.srv {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 12px 16px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
 }
-.hot-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.hot-badge{
-  background:#ef4444;color:#fff;
-  font-size:11px;font-weight:800;
-  padding:3px 8px;border-radius:5px;
-  display:inline-flex;align-items:center;gap:3px;
-  letter-spacing:.5px;
-}
-.hot-banner{
-  font-size:12px;font-weight:700;letter-spacing:.5px;color:#fff;
-}
+.srv:hover { background: var(--press); }
+.srv:active { background: var(--press); }
+.srv-name { font-size: 16px; font-weight: 700; line-height: 1.4; }
+.srv-meta { grid-column: 1; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.srv svg { grid-column: 2; grid-row: 1 / span 2; color: var(--brand); }
 
-.brand-row{
-  display:flex;align-items:center;justify-content:center;
-  gap:10px;margin:6px 0 12px;
+/* ── 最下面：客服和預約紀錄，更低調 ── */
+.more { display: flex; justify-content: center; gap: 8px; padding: 16px 16px 0; }
+.more button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
 }
-.brand-row .icon{font-size:30px}
-.brand-row h1{
-  font-size:28px;font-weight:900;letter-spacing:.5px;
-  color:#fff;
-}
+.more button:hover { background: var(--press); }
+.more button:active { background: var(--press); }
+.fine { padding: 8px 16px 0; font-size: 14px; line-height: 1.5; color: var(--ink-2); text-align: center; }
 
-.sub-line{
-  font-size:12.5px;line-height:1.55;color:#d1d5db;
-  display:flex;gap:6px;align-items:flex-start;margin-top:4px;
-}
-.sub-line .em{flex-shrink:0;font-size:13px}
+/* 照片來源：CC BY、CC BY-SA 一定要標作者和授權 */
+.credit { padding: 4px 16px 32px; font-size: 14px; line-height: 1.5; color: var(--ink-2); text-align: center; }
+.credit a { color: inherit; text-underline-offset: 2px; }
 
-.divider{
-  text-align:center;font-size:12px;color:#475569;
-  margin:14px 6px 8px;font-weight:600;letter-spacing:.5px;
-}
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.primary:focus-visible, .more button:focus-visible { outline-offset: 3px; }
+.srv:focus-visible { outline-offset: -3px; }
 
-.srv-stack{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-
-.srv{
-  display:flex;align-items:center;gap:12px;
-  padding:14px 16px;
-  border-radius:10px;border:0;
-  font-family:inherit;font-size:14.5px;font-weight:700;
-  cursor:pointer;width:100%;text-align:left;
-  transition:transform .15s ease,filter .15s ease;
-  box-shadow:0 2px 5px rgba(0,0,0,.08);
-}
-.srv:hover{transform:translateY(-1px);filter:brightness(1.05)}
-.srv:active{transform:translateY(0);filter:brightness(.95)}
-.srv .em{font-size:18px;width:22px;text-align:center;flex-shrink:0}
-.srv .label{flex:1}
-.srv .arrow{font-size:14px;font-weight:800;opacity:.9}
-
-/* default palette (fallback) */
-:root{
-  --c-blue:#3b82f6;   --cf-blue:#fff;
-  --c-yellow:#b8923b; --cf-yellow:#fff;
-  --c-red:#ef4444;    --cf-red:#fff;
-  --c-green:#22c55e;  --cf-green:#fff;
-  --c-dark:#1f2937;   --cf-dark:#fff;
-  --c-light:#ffffff;  --cf-light:#1f2937;
-  --c-cream:#fef3c7;  --cf-cream:#b45309;
-  --c-pink:#fecaca;   --cf-pink:#b91c1c;
-  --c-pink-arrow:#dc2626;
-}
-
-.srv.blue   {background:var(--c-blue);   color:var(--cf-blue)}
-.srv.yellow {background:var(--c-yellow); color:var(--cf-yellow)}
-.srv.red    {background:var(--c-red);    color:var(--cf-red)}
-.srv.green  {background:var(--c-green);  color:var(--cf-green)}
-.srv.dark   {background:var(--c-dark);   color:var(--cf-dark)}
-.srv.light  {background:var(--c-light);  color:var(--cf-light)}
-.srv.cream  {background:var(--c-cream);  color:var(--cf-cream)}
-.srv.cream .label{text-decoration:underline}
-.srv.pink   {background:var(--c-pink);   color:var(--cf-pink)}
-.srv.pink .arrow{color:var(--c-pink-arrow)}
-
-/* ====== per-industry themes ====== */
-/* 美甲 · 粉嫩 / 玫紅 / 薄荷 */
-.theme-nail{
-  --c-blue:#ec4899;   --cf-blue:#fff;
-  --c-yellow:#d97706; --cf-yellow:#fff;
-  --c-red:#be123c;    --cf-red:#fff;
-  --c-green:#14b8a6;  --cf-green:#fff;
-  --c-dark:#18181b;   --cf-dark:#fff;
-  --c-light:#fdf2f8;  --cf-light:#831843;
-  --c-cream:#fef9c3;  --cf-cream:#92400e;
-  --c-pink:#fce7f3;   --cf-pink:#9d174d;
-  --c-pink-arrow:#be185d;
-}
-/* 貸款 · 金融藍 / 金黃 */
-.theme-loan{
-  --c-blue:#1e40af;   --cf-blue:#fff;
-  --c-yellow:#ca8a04; --cf-yellow:#fff;
-  --c-red:#b91c1c;    --cf-red:#fff;
-  --c-green:#15803d;  --cf-green:#fff;
-  --c-dark:#1e293b;   --cf-dark:#fff;
-  --c-light:#dbeafe;  --cf-light:#1e3a8a;
-  --c-cream:#fef3c7;  --cf-cream:#92400e;
-  --c-pink:#fee2e2;   --cf-pink:#991b1b;
-  --c-pink-arrow:#dc2626;
-}
-/* 看車 · 速度紅 / 賽車黑 */
-.theme-car{
-  --c-blue:#dc2626;   --cf-blue:#fff;
-  --c-yellow:#a16207; --cf-yellow:#fff;
-  --c-red:#991b1b;    --cf-red:#fff;
-  --c-green:#166534;  --cf-green:#fff;
-  --c-dark:#18181b;   --cf-dark:#fff;
-  --c-light:#f3f4f6;  --cf-light:#18181b;
-  --c-cream:#fef3c7;  --cf-cream:#92400e;
-  --c-pink:#fee2e2;   --cf-pink:#b91c1c;
-  --c-pink-arrow:#dc2626;
-}
-/* 看房 · 暖橘 / 信任金 */
-.theme-house{
-  --c-blue:#ea580c;   --cf-blue:#fff;
-  --c-yellow:#d97706; --cf-yellow:#fff;
-  --c-red:#b45309;    --cf-red:#fff;
-  --c-green:#047857;  --cf-green:#fff;
-  --c-dark:#44403c;   --cf-dark:#fff;
-  --c-light:#fef3c7;  --cf-light:#78350f;
-  --c-cream:#fed7aa;  --cf-cream:#9a3412;
-  --c-pink:#fee2e2;   --cf-pink:#b91c1c;
-  --c-pink-arrow:#dc2626;
-}
-/* 健身 · 活力橘 / 亮黃 */
-.theme-fitness{
-  --c-blue:#f97316;   --cf-blue:#fff;
-  --c-yellow:#facc15; --cf-yellow:#422006;
-  --c-red:#ef4444;    --cf-red:#fff;
-  --c-green:#16a34a;  --cf-green:#fff;
-  --c-dark:#1f2937;   --cf-dark:#fff;
-  --c-light:#fff7ed;  --cf-light:#9a3412;
-  --c-cream:#fef3c7;  --cf-cream:#92400e;
-  --c-pink:#fecaca;   --cf-pink:#991b1b;
-  --c-pink-arrow:#dc2626;
-}
-/* 寵物 · 薄荷 / 萊姆 / 玫粉 */
-.theme-pet{
-  --c-blue:#14b8a6;   --cf-blue:#fff;
-  --c-yellow:#facc15; --cf-yellow:#422006;
-  --c-red:#fb7185;    --cf-red:#fff;
-  --c-green:#84cc16;  --cf-green:#fff;
-  --c-dark:#422006;   --cf-dark:#fff;
-  --c-light:#f0fdfa;  --cf-light:#134e4a;
-  --c-cream:#fef3c7;  --cf-cream:#92400e;
-  --c-pink:#fdf2f8;   --cf-pink:#831843;
-  --c-pink-arrow:#be185d;
-}
-/* 命理 · 神秘紫 / 金黃 */
-.theme-fortune{
-  --c-blue:#7c3aed;   --cf-blue:#fff;
-  --c-yellow:#ca8a04; --cf-yellow:#fff;
-  --c-red:#991b1b;    --cf-red:#fff;
-  --c-green:#1e40af;  --cf-green:#fff;
-  --c-dark:#18181b;   --cf-dark:#fff;
-  --c-light:#f5f3ff;  --cf-light:#5b21b6;
-  --c-cream:#fef3c7;  --cf-cream:#92400e;
-  --c-pink:#fce7f3;   --cf-pink:#9d174d;
-  --c-pink-arrow:#be185d;
-}
-/* 汽車保養 · 工業橘 / 機油綠 */
-.theme-auto{
-  --c-blue:#ea580c;   --cf-blue:#fff;
-  --c-yellow:#ca8a04; --cf-yellow:#fff;
-  --c-red:#b91c1c;    --cf-red:#fff;
-  --c-green:#166534;  --cf-green:#fff;
-  --c-dark:#18181b;   --cf-dark:#fff;
-  --c-light:#f5f5f4;  --cf-light:#1c1917;
-  --c-cream:#fef3c7;  --cf-cream:#92400e;
-  --c-pink:#fee2e2;   --cf-pink:#991b1b;
-  --c-pink-arrow:#dc2626;
-}
-/* 牙醫 · 醫療青藍 / 薄荷 */
-.theme-dental{
-  --c-blue:#0891b2;   --cf-blue:#fff;
-  --c-yellow:#14b8a6; --cf-yellow:#fff;
-  --c-red:#ef4444;    --cf-red:#fff;
-  --c-green:#06b6d4;  --cf-green:#fff;
-  --c-dark:#1e3a8a;   --cf-dark:#fff;
-  --c-light:#ecfeff;  --cf-light:#155e75;
-  --c-cream:#fef3c7;  --cf-cream:#92400e;
-  --c-pink:#fee2e2;   --cf-pink:#991b1b;
-  --c-pink-arrow:#dc2626;
-}
-
-/* per-industry avatar tints — overrides .brand-avatar background */
-.avatar-nail    {background:linear-gradient(135deg,#fde4ec,#f9b9d2)}
-.avatar-loan    {background:linear-gradient(135deg,#dbeafe,#93c5fd)}
-.avatar-car     {background:linear-gradient(135deg,#dcfce7,#86efac)}
-.avatar-house   {background:linear-gradient(135deg,#fef3c7,#fcd34d)}
-.avatar-fit     {background:linear-gradient(135deg,#fee2e2,#fca5a5)}
-.avatar-pet     {background:linear-gradient(135deg,#fae8ff,#f0abfc)}
-.avatar-fortune {background:linear-gradient(135deg,#e9d5ff,#a78bfa)}
-.avatar-auto    {background:linear-gradient(135deg,#fed7aa,#fb923c)}
-.avatar-dental  {background:linear-gradient(135deg,#cffafe,#67e8f9)}
+/* 線條圖示：同一套，粗細一致 */
+.icon { display: block; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }

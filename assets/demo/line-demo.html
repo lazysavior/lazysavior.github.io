@@ -1,67 +1,70 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>美甲工作室 · LINE Demo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="line-demo.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=380">
+<title>美甲工作室｜LINE 預約示範畫面</title>
+<meta name="description" content="作品集裡的 LINE 預約示範畫面：美甲工作室。價格、優惠都是示意。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="line-demo.css">
+<style>
+  /* 這一頁的照片：藍綠色背景在左邊，雙手捧著蠟燭在右邊；店名放在左上的藍綠色上 */
+  .hero-photo { object-position: 0% 50%; }
+</style>
 </head>
-<body class="theme-nail">
-
-<div class="phone-frame">
-  <div class="phone-screen">
-
-    <div class="status-bar">
-      <span>9:41</span>
-      <span class="right">
-        <span>●●●●</span><span>📶</span><span>🔋</span>
-      </span>
-    </div>
-
-    <div class="liff-area">
-
-      <div class="brand-header">
-        <div class="brand-avatar avatar-nail">💅</div>
-        <div class="brand-tag">美甲工作室</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hot-row">
-          <span class="hot-badge">🔥 HOT</span>
-          <span class="hot-banner">💖 春季新色登場 💖</span>
+<body class="shop-nail">
+<div class="phone">
+  <div class="screen">
+    <main class="liff">
+      <header class="hero">
+        <div class="status" aria-hidden="true">
+          <span>9:41</span>
+          <span class="sys">
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 12v-1M6 12V9M10 12V6M14 12V3"/></svg>
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 5.5a10 10 0 0 1 14 0M4.5 8.2a6.4 6.4 0 0 1 9 0M7.2 10.8a2.6 2.6 0 0 1 3.6 0"/></svg>
+            <svg class="icon" width="26" height="14" viewBox="0 0 26 14"><rect x="1.5" y="2.5" width="20" height="9" rx="2.5"/><path d="M24 5.5v3"/><rect x="3.5" y="4.5" width="13" height="5" rx="1" fill="currentColor" stroke="none"/></svg>
+          </span>
         </div>
-        <div class="brand-row">
-          <span class="icon">💅</span>
+        <img class="hero-photo" src="photos/nail.jpg" alt="一雙擦了乾燥玫瑰色指甲的手，捧著點燃的蠟燭，背景是藍綠色的牆">
+        <div class="hero-text">
           <h1>美甲工作室</h1>
-          <span class="icon">✨</span>
+          <p class="hero-line">客製化美甲設計<br>24 小時線上預約</p>
+          <p class="demo-tag">示範畫面</p>
         </div>
-        <p class="sub-line"><span class="em">✨</span>客製化美甲設計，讓您的指尖也很時尚。</p>
-        <p class="sub-line"><span class="em">📌</span>24 小時線上預約，省去 LINE 等待時間。</p>
-      </div>
+      </header>
 
-      <div class="srv-stack">
-        <button class="srv blue"><span class="em">📲</span><span class="label">立即預約美甲</span><span class="arrow">→</span></button>
-        <button class="srv yellow"><span class="em">💎</span><span class="label">本月新款作品集</span><span class="arrow">→</span></button>
-        <button class="srv red"><span class="em">🎀</span><span class="label">新客首次 8 折優惠</span><span class="arrow">→</span></button>
-      </div>
+      <section class="book">
+        <button class="primary" type="button">立即預約
+          <svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9h10M10 5l4 4-4 4"/></svg>
+        </button>
+        <p class="note">新客首次 8 折（示意）</p>
+      </section>
 
-      <div class="divider">✨ 👇 請選擇您需要的服務 👇 ✨</div>
+      <section class="services" aria-labelledby="srv-title">
+        <div class="services-head">
+          <h2 id="srv-title">服務項目</h2>
+          <p>價格為示意</p>
+        </div>
+        <ul class="srv-list">
+          <li><button class="srv" type="button"><span class="srv-name">光療美甲</span><span class="srv-meta">約 90 分鐘・NT$1,200 起</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">手部 SPA 護理</span><span class="srv-meta">約 60 分鐘・NT$900</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">卸甲</span><span class="srv-meta">約 30 分鐘・NT$300</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">足部光療</span><span class="srv-meta">約 90 分鐘・NT$1,400 起</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">本月新款</span><span class="srv-meta">這個月做過的款式</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">完整價目表</span><span class="srv-meta">所有項目和加購</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+        </ul>
+      </section>
 
-      <div class="srv-stack">
-        <button class="srv green"><span class="em">💎</span><span class="label">光療美甲</span><span class="arrow">→</span></button>
-        <button class="srv blue"><span class="em">🌸</span><span class="label">手部 SPA 護理</span><span class="arrow">→</span></button>
-        <button class="srv dark"><span class="em">🧹</span><span class="label">卸甲服務</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">🦶</span><span class="label">足部光療</span><span class="arrow">→</span></button>
-        <button class="srv cream"><span class="em">📋</span><span class="label">查看完整價目表</span><span class="arrow">→</span></button>
-        <button class="srv pink"><span class="em">💬</span><span class="label">呼叫專人客服</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">📅</span><span class="label">我的預約 / 取消</span><span class="arrow">→</span></button>
-      </div>
-
-    </div>
+      <nav class="more" aria-label="其他">
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 4.5h12v7.5H8l-3 2.5V12H3z"/></svg>真人客服</button>
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="3" y="4" width="12" height="11" rx="2"/><path d="M3 8h12M6.5 2.5v3M11.5 2.5v3"/></svg>我的預約</button>
+      </nav>
+      <p class="fine">示範畫面，價格和優惠都是示意</p>
+      <p class="credit">照片：<a href="https://commons.wikimedia.org/wiki/File:Hands_(Unsplash).jpg" rel="noopener" target="_blank">Daiga Ellaby</a>（<a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener" target="_blank">CC0</a>，Wikimedia Commons），已裁切</p>
+    </main>
   </div>
 </div>
-
 </body>
 </html>

@@ -1,67 +1,70 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>汽車保養廠 · LINE Demo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="line-demo.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=380">
+<title>汽車保養廠｜LINE 預約示範畫面</title>
+<meta name="description" content="作品集裡的 LINE 預約示範畫面：汽車保養廠。價格、優惠都是示意。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="line-demo.css">
+<style>
+  /* 這一頁的照片：左右翻轉再放大 1.4 倍：原本右邊吊著引擎的暗處移到左上，店名放在那裡；日光燈和紅色老車推到右邊（車頭標誌翻過來也看不出來）。整張調暗 28% */
+  .hero-photo { object-position: 100% 20%; --photo-transform: scale(1.4) translateX(356px) scaleX(-1); --photo-filter: brightness(0.72); }
+</style>
 </head>
-<body class="theme-auto">
-
-<div class="phone-frame">
-  <div class="phone-screen">
-
-    <div class="status-bar">
-      <span>9:41</span>
-      <span class="right">
-        <span>●●●●</span><span>📶</span><span>🔋</span>
-      </span>
-    </div>
-
-    <div class="liff-area">
-
-      <div class="brand-header">
-        <div class="brand-avatar avatar-auto">🔧</div>
-        <div class="brand-tag">汽車保養廠</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hot-row">
-          <span class="hot-badge">🔥 HOT</span>
-          <span class="hot-banner">⚡ 春季健檢專案 8 折 ⚡</span>
+<body class="shop-auto">
+<div class="phone">
+  <div class="screen">
+    <main class="liff">
+      <header class="hero">
+        <div class="status" aria-hidden="true">
+          <span>9:41</span>
+          <span class="sys">
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 12v-1M6 12V9M10 12V6M14 12V3"/></svg>
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 5.5a10 10 0 0 1 14 0M4.5 8.2a6.4 6.4 0 0 1 9 0M7.2 10.8a2.6 2.6 0 0 1 3.6 0"/></svg>
+            <svg class="icon" width="26" height="14" viewBox="0 0 26 14"><rect x="1.5" y="2.5" width="20" height="9" rx="2.5"/><path d="M24 5.5v3"/><rect x="3.5" y="4.5" width="13" height="5" rx="1" fill="currentColor" stroke="none"/></svg>
+          </span>
         </div>
-        <div class="brand-row">
-          <span class="icon">🔧</span>
+        <img class="hero-photo" src="photos/auto.jpg" alt="偏暗的修車廠：一輛紅色老車打開引擎蓋，旁邊的吊架上吊著一具引擎">
+        <div class="hero-text">
           <h1>汽車保養廠</h1>
-          <span class="icon">✨</span>
+          <p class="hero-line">線上預約進廠時段<br>到場不用等</p>
+          <p class="demo-tag">示範畫面</p>
         </div>
-        <p class="sub-line"><span class="em">✨</span>原廠等級保養，車況最安心。</p>
-        <p class="sub-line"><span class="em">📌</span>線上預約進廠時段，省去現場等候。</p>
-      </div>
+      </header>
 
-      <div class="srv-stack">
-        <button class="srv blue"><span class="em">📲</span><span class="label">立即預約保養</span><span class="arrow">→</span></button>
-        <button class="srv yellow"><span class="em">🔍</span><span class="label">免費車況健檢</span><span class="arrow">→</span></button>
-        <button class="srv red"><span class="em">🔥</span><span class="label">限時 8 折專案</span><span class="arrow">→</span></button>
-      </div>
+      <section class="book">
+        <button class="primary" type="button">立即預約
+          <svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9h10M10 5l4 4-4 4"/></svg>
+        </button>
+        <p class="note">免費 20 項車況檢查（示意）</p>
+      </section>
 
-      <div class="divider">✨ 👇 請選擇您需要的服務 👇 ✨</div>
+      <section class="services" aria-labelledby="srv-title">
+        <div class="services-head">
+          <h2 id="srv-title">服務項目</h2>
+          <p>價格為示意</p>
+        </div>
+        <ul class="srv-list">
+          <li><button class="srv" type="button"><span class="srv-name">定期保養</span><span class="srv-meta">約 60 分鐘・NT$1,800 起</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">輪胎更換・平衡</span><span class="srv-meta">約 40 分鐘・看輪胎報價</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">煞車檢查</span><span class="srv-meta">約 30 分鐘・NT$500</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">板金烤漆</span><span class="srv-meta">看損傷估價</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">引擎・變速箱檢修</span><span class="srv-meta">先檢查再報價</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">完整服務價目</span><span class="srv-meta">所有項目和工資</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+        </ul>
+      </section>
 
-      <div class="srv-stack">
-        <button class="srv green"><span class="em">🛢️</span><span class="label">定期保養 / 換油</span><span class="arrow">→</span></button>
-        <button class="srv blue"><span class="em">🛞</span><span class="label">輪胎更換 / 平衡</span><span class="arrow">→</span></button>
-        <button class="srv dark"><span class="em">🎨</span><span class="label">板金烤漆</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">⚙️</span><span class="label">引擎 / 變速箱檢修</span><span class="arrow">→</span></button>
-        <button class="srv cream"><span class="em">📋</span><span class="label">完整服務價目</span><span class="arrow">→</span></button>
-        <button class="srv pink"><span class="em">💬</span><span class="label">技師諮詢</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">📅</span><span class="label">我的保養紀錄</span><span class="arrow">→</span></button>
-      </div>
-
-    </div>
+      <nav class="more" aria-label="其他">
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 4.5h12v7.5H8l-3 2.5V12H3z"/></svg>技師諮詢</button>
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="3" y="4" width="12" height="11" rx="2"/><path d="M3 8h12M6.5 2.5v3M11.5 2.5v3"/></svg>我的保養紀錄</button>
+      </nav>
+      <p class="fine">示範畫面，價格和優惠都是示意</p>
+      <p class="credit">照片：<a href="https://commons.wikimedia.org/wiki/File:Car_repair_shop.jpg" rel="noopener" target="_blank">Martin Vorel</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener" target="_blank">CC BY-SA 4.0</a>，Wikimedia Commons），已裁切、左右翻轉、調暗</p>
+    </main>
   </div>
 </div>
-
 </body>
 </html>

@@ -1,67 +1,70 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>健身工作室 · LINE Demo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="line-demo.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=380">
+<title>健身工作室｜LINE 預約示範畫面</title>
+<meta name="description" content="作品集裡的 LINE 預約示範畫面：健身工作室。價格、優惠都是示意。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="line-demo.css">
+<style>
+  /* 這一頁的照片：放大 1.4 倍，左上是紅色的牆和深藍色的槓片，店名放在上面；後面亮藍色的燈光推到右邊。整張調暗 20% */
+  .hero-photo { object-position: 0% 0%; --photo-transform: scale(1.4); --photo-filter: brightness(0.8); }
+</style>
 </head>
-<body class="theme-fitness">
-
-<div class="phone-frame">
-  <div class="phone-screen">
-
-    <div class="status-bar">
-      <span>9:41</span>
-      <span class="right">
-        <span>●●●●</span><span>📶</span><span>🔋</span>
-      </span>
-    </div>
-
-    <div class="liff-area">
-
-      <div class="brand-header">
-        <div class="brand-avatar avatar-fit">💪</div>
-        <div class="brand-tag">健身工作室</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hot-row">
-          <span class="hot-badge">🔥 HOT</span>
-          <span class="hot-banner">⚡ 春季塑身專案開跑 ⚡</span>
+<body class="shop-fitness">
+<div class="phone">
+  <div class="screen">
+    <main class="liff">
+      <header class="hero">
+        <div class="status" aria-hidden="true">
+          <span>9:41</span>
+          <span class="sys">
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 12v-1M6 12V9M10 12V6M14 12V3"/></svg>
+            <svg class="icon" width="18" height="14" viewBox="0 0 18 14"><path d="M2 5.5a10 10 0 0 1 14 0M4.5 8.2a6.4 6.4 0 0 1 9 0M7.2 10.8a2.6 2.6 0 0 1 3.6 0"/></svg>
+            <svg class="icon" width="26" height="14" viewBox="0 0 26 14"><rect x="1.5" y="2.5" width="20" height="9" rx="2.5"/><path d="M24 5.5v3"/><rect x="3.5" y="4.5" width="13" height="5" rx="1" fill="currentColor" stroke="none"/></svg>
+          </span>
         </div>
-        <div class="brand-row">
-          <span class="icon">💪</span>
+        <img class="hero-photo" src="photos/fitness.jpg" alt="健身房裡：藍色的槓片掛在架子上，後面是紅色的牆和一排訓練器材">
+        <div class="hero-text">
           <h1>健身工作室</h1>
-          <span class="icon">✨</span>
+          <p class="hero-line">一對一教練課<br>量身打造訓練計畫</p>
+          <p class="demo-tag">示範畫面</p>
         </div>
-        <p class="sub-line"><span class="em">✨</span>一對一教練課，量身打造訓練計畫。</p>
-        <p class="sub-line"><span class="em">📌</span>線上預約課程，省去現場排隊等候。</p>
-      </div>
+      </header>
 
-      <div class="srv-stack">
-        <button class="srv blue"><span class="em">📲</span><span class="label">立即預約教練課</span><span class="arrow">→</span></button>
-        <button class="srv yellow"><span class="em">🎁</span><span class="label">體驗價 NT$300</span><span class="arrow">→</span></button>
-        <button class="srv red"><span class="em">🔥</span><span class="label">新會員 8 折優惠</span><span class="arrow">→</span></button>
-      </div>
+      <section class="book">
+        <button class="primary" type="button">立即預約
+          <svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9h10M10 5l4 4-4 4"/></svg>
+        </button>
+        <p class="note">體驗課 NT$300（示意）</p>
+      </section>
 
-      <div class="divider">✨ 👇 請選擇您需要的服務 👇 ✨</div>
+      <section class="services" aria-labelledby="srv-title">
+        <div class="services-head">
+          <h2 id="srv-title">服務項目</h2>
+          <p>價格為示意</p>
+        </div>
+        <ul class="srv-list">
+          <li><button class="srv" type="button"><span class="srv-name">重量訓練</span><span class="srv-meta">一對一・60 分鐘・NT$1,500</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">有氧課程</span><span class="srv-meta">團體課・50 分鐘・NT$400</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">拳擊有氧</span><span class="srv-meta">團體課・50 分鐘・NT$450</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">伸展放鬆</span><span class="srv-meta">一對一・45 分鐘・NT$1,000</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">新會員方案</span><span class="srv-meta">第一個月 8 折</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+          <li><button class="srv" type="button"><span class="srv-name">完整課程價目</span><span class="srv-meta">所有課程和月費</span><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg></button></li>
+        </ul>
+      </section>
 
-      <div class="srv-stack">
-        <button class="srv green"><span class="em">🏋️</span><span class="label">重訓塑身</span><span class="arrow">→</span></button>
-        <button class="srv blue"><span class="em">🏃</span><span class="label">有氧課程</span><span class="arrow">→</span></button>
-        <button class="srv dark"><span class="em">🥊</span><span class="label">拳擊有氧</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">🧘</span><span class="label">伸展放鬆</span><span class="arrow">→</span></button>
-        <button class="srv cream"><span class="em">📋</span><span class="label">完整課程價目表</span><span class="arrow">→</span></button>
-        <button class="srv pink"><span class="em">💬</span><span class="label">真人教練諮詢</span><span class="arrow">→</span></button>
-        <button class="srv light"><span class="em">📅</span><span class="label">我的課表</span><span class="arrow">→</span></button>
-      </div>
-
-    </div>
+      <nav class="more" aria-label="其他">
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 4.5h12v7.5H8l-3 2.5V12H3z"/></svg>教練諮詢</button>
+        <button type="button"><svg class="icon" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="3" y="4" width="12" height="11" rx="2"/><path d="M3 8h12M6.5 2.5v3M11.5 2.5v3"/></svg>我的課表</button>
+      </nav>
+      <p class="fine">示範畫面，價格和優惠都是示意</p>
+      <p class="credit">照片：<a href="https://commons.wikimedia.org/wiki/File:Weight_plates.jpg" rel="noopener" target="_blank">Cobragym1</a>（<a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener" target="_blank">CC BY-SA 3.0</a>，Wikimedia Commons），已裁切、調暗</p>
+    </main>
   </div>
 </div>
-
 </body>
 </html>
