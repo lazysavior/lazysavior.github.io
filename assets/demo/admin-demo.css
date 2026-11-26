@@ -1,0 +1,264 @@
+/* Hallmark · shape: 店家預約後台示範（作品集「打開後台」的視窗）＋和 LINE 手機畫面是同一間店的前台和後台 · genre: product · theme: custom · job: manage · hero: none · nav: 左邊一欄選單，窄畫面變成上面一排可以左右滑 · footer: none · imagery: none · signature: 狀態用「字＋小記號」分，只有等店家確認的「已預約」用店的主色
+ * axes: light/sans/one-accent · posture: quiet（和手機畫面同一套：淡淡的店色底、白色清單、細線、圓角 12，一個畫面只有一顆主色按鈕） · contrast: pass · fold: 1280×800 第一屏看得到選單、四個數字、篩選和前幾筆時段 · v2.0.0 */
+
+/* 預約後台示範：作品集裡「店家預約系統」那件，按「打開後台」開在視窗裡。
+   和右邊的 LINE 手機畫面（line-demo.css）同一套：一樣的字體、淡淡的美甲店色底、白色清單、細線、圓角，
+   主色也是美甲那頁的乾燥玫瑰色，而且只用在「要店家注意」的地方。
+   這是示範：按鈕只有樣子，按了不會改資料（和改版前一樣）。字至少 14px、按鈕至少 40px 高。 */
+
+:root {
+  /* 和 line-demo.css 共用的值 */
+  --canvas: oklch(97% 0.012 355); /* 美甲那頁手機畫面的淺底 */
+  --paper: oklch(99.5% 0.005 250); /* 清單的白底 */
+  --ink: oklch(24% 0.015 260);
+  --ink-2: oklch(42% 0.015 260);
+  --hair: oklch(90% 0.008 260);
+  --press: oklch(20% 0.02 260 / 0.06);
+  --focus: oklch(55% 0.17 255);
+  --brand: oklch(46% 0.08 355); /* 美甲：乾燥玫瑰 */
+  --brand-press: oklch(40% 0.08 355);
+  --on-brand: oklch(99% 0.004 90);
+
+  /* 後台多的幾個 */
+  --field: oklch(98% 0.004 250); /* 輸入框：比白底暗一點點，看得出是要填的地方 */
+  --field-line: oklch(62% 0.012 260); /* 輸入框、開放中標籤的邊：和白底 3:1 以上 */
+  --brand-wash: oklch(94% 0.025 355); /* 「已預約」標籤的底 */
+  --scroll-thumb: oklch(82% 0.01 260);
+
+  --sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow-x: clip; }
+/* 用鍵盤跳到畫面最下面那一列時，留 16px，焦點框不貼著畫面底被切掉 */
+html, .main { scroll-padding-block: 16px; }
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--canvas);
+  color: var(--ink);
+  font: 400 15px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  line-break: strict;
+}
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.5; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* 線條圖示：和手機畫面同一套，粗細一致 */
+.icon { display: block; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── 左邊：店名、選單、同步 ── */
+.side {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 240px;
+  padding: 24px 16px;
+  border-right: 1px solid var(--hair);
+}
+.shop { padding: 0 12px 20px; border-bottom: 1px solid var(--hair); }
+.shop-name { font-size: 18px; font-weight: 700; line-height: 1.4; letter-spacing: 0.04em; }
+.shop-sub { margin-top: 4px; font-size: 14px; color: var(--ink-2); }
+
+.nav { flex: 1; padding-top: 16px; }
+.nav-label { padding: 0 12px 8px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+.nav-list { display: grid; gap: 4px; }
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  transition: background-color 120ms ease-out, color 120ms ease-out;
+}
+.nav-btn:hover { background: var(--press); color: var(--ink); }
+/* 現在這一頁：白底、字加粗、圖示用主色；和手機畫面的白色清單同一種白 */
+.nav-btn.is-current { background: var(--paper); color: var(--ink); font-weight: 700; }
+.nav-btn.is-current .icon { color: var(--brand); }
+
+.sync { display: grid; gap: 8px; padding-top: 16px; border-top: 1px solid var(--hair); }
+.sync-note { font-size: 14px; color: var(--ink-2); text-align: center; }
+
+/* ── 按鈕：一個畫面只有一顆主色（篩選），其他都安靜 ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background-color 120ms ease-out;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--brand); color: var(--on-brand); font-weight: 700; letter-spacing: 0.04em; }
+.btn-primary:hover, .btn-primary:active { background: var(--brand-press); }
+.btn-quiet { background: var(--paper); border-color: var(--hair); color: var(--ink); }
+.btn-quiet:hover, .btn-quiet:active { background: var(--field); border-color: var(--field-line); }
+.btn-ghost { background: transparent; color: var(--ink-2); }
+.btn-ghost:hover, .btn-ghost:active { background: var(--press); color: var(--ink); }
+
+/* ── 右邊內容 ── */
+.main { flex: 1; min-width: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) transparent; }
+.wrap { padding: 32px 40px 48px; }
+.page-head { margin-bottom: 24px; }
+.page-title { font-size: 24px; font-weight: 700; line-height: 1.3; letter-spacing: 0.02em; }
+.page-sub { margin-top: 4px; font-size: 14px; color: var(--ink-2); }
+
+/* 四個數字：放在同一條白色清單裡，用細線分開，不做成四張彩色卡片；只有「待確認」用主色，因為那是店家要去處理的 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: var(--paper);
+}
+.stat { padding: 20px 24px; }
+.stat + .stat { border-left: 1px solid var(--hair); }
+.stat-label { font-size: 14px; font-weight: 500; color: var(--ink-2); }
+.stat-num { margin-top: 4px; font-size: 30px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.stat-note { margin-top: 4px; font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.stat-todo .stat-num { color: var(--brand); }
+
+/* 篩選 */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 16px 24px 20px;
+  border-radius: 12px;
+  background: var(--paper);
+}
+.field label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+.control {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--field-line);
+  border-radius: 8px;
+  background: var(--field);
+  color: var(--ink);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.control:hover { border-color: var(--ink-2); }
+.filter-actions { display: flex; gap: 8px; }
+
+/* 時段表：白色清單，細線分開每一列 */
+.slots { overflow: hidden; border-radius: 12px; background: var(--paper); }
+.slots-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 16px 24px; border-bottom: 1px solid var(--hair); }
+.slots-title { font-size: 16px; font-weight: 700; }
+.slots-count { font-size: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.table-scroll { overflow-x: auto; overscroll-behavior-x: contain; scroll-padding-inline: 16px; scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) transparent; }
+.table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table th {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--hair);
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+}
+.table td { height: 52px; padding: 4px 16px; white-space: nowrap; }
+.table tbody tr + tr td { border-top: 1px solid var(--hair); }
+.table tbody tr { transition: background-color 120ms ease-out; }
+.table tbody tr:hover { background: var(--press); }
+.table th:first-child, .table td:first-child { padding-left: 24px; }
+.table th:last-child, .table td:last-child { padding-right: 16px; }
+.num { font-variant-numeric: tabular-nums; }
+/* 空欄（沒有候補、還沒人預約）：畫一條短線，讀屏軟體念「無」 */
+.none { position: relative; display: inline-block; width: 16px; height: 2px; border-radius: 1px; background: var(--field-line); vertical-align: middle; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* 狀態：一定有字，再加一個小記號；只有「已預約」（等店家確認）用主色，其他是中性色 */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px;
+  padding: 0 12px 0 8px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+.status .icon { stroke-width: 2; }
+.status-booked { background: var(--brand-wash); color: var(--brand); }
+.status-confirmed { border-color: var(--hair); color: var(--ink-2); }
+.status-open { border-color: var(--field-line); border-style: dashed; color: var(--ink-2); }
+
+/* 每一列的操作：安靜的文字按鈕，滑過去才有底色 */
+.acts { display: flex; gap: 4px; margin-left: -12px; }
+.act {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 120ms ease-out;
+}
+.act-quiet { color: var(--ink-2); }
+.act:hover, .act:active { background: var(--press); }
+
+/* ── 窄畫面（作品集在手機上打開的視窗大約 367px 寬） ── */
+@media (max-width: 760px) {
+  body { display: block; height: auto; overflow: visible; }
+  .side { width: auto; padding: 16px 16px 0; border-right: 0; border-bottom: 1px solid var(--hair); }
+  .shop { padding: 0 0 12px; border-bottom: 0; }
+  .nav { padding-top: 0; }
+  /* 「選單」兩個字畫面上不顯示，讀屏軟體還念得到 */
+  .nav-label { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  /* 選單排成格子，六個都看得到：390、367 寬一排三個（兩排），320 寬一排兩個。
+     不做左右滑，用鍵盤一格一格跳時焦點框不會被切掉，也不用加程式把選單捲過去 */
+  .nav-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 4px; margin-left: -8px; padding-bottom: 12px; }
+  .nav-btn { gap: 8px; padding: 0 8px; white-space: nowrap; }
+  /* 同步按鈕和時間放一行；太窄就把時間整句移到下一行，不拆字 */
+  .sync { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 12px 0 16px; }
+  .sync-note { text-align: left; white-space: nowrap; }
+  .main { overflow: visible; }
+  .wrap { padding: 24px 16px 32px; }
+  .page-head { margin-bottom: 16px; }
+
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat { padding: 16px; }
+  .stat:nth-child(odd) { border-left: 0; }
+  .stat:nth-child(n + 3) { border-top: 1px solid var(--hair); }
+  .stat-num { font-size: 26px; }
+
+  .filter { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 16px; }
+  .control { width: 100%; }
+  .filter-actions { margin-top: 4px; }
+  .filter-actions .btn { flex: 1; }
+
+  .slots-head { padding: 16px; }
+  .table { min-width: 640px; }
+  .table th:first-child, .table td:first-child { padding-left: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
