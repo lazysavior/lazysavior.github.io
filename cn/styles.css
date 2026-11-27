@@ -1,4 +1,4 @@
-/* Hallmark · shape: Catalogue (two offers set as a price index; examples drawn at one scale) · genre: editorial · theme: Specimen (deal 3/3, seed prompt-835c·255ed04a·2026-11-27·r0) · job: hire · draw: 896ee9
+/* Hallmark · shape: Catalogue (three offers set as a price index; examples drawn at one scale) · genre: editorial · theme: Specimen (deal 3/3, seed prompt-835c·255ed04a·2026-11-27·r0) · job: hire · draw: 896ee9
  * hero: Index · nav: edge-aligned · footer: letter close · imagery: the product (our own example images, concept work) · signature: every format drawn at one shared scale, with blue dimension guides naming its real pixel size
  * axes: light/grotesk-sans/cool · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: E, system fonts only (mainland can't reach web fonts), so the Specimen contrast lives in weight (300 display over 400 body) and in the guides instead of a Didone */
@@ -85,7 +85,7 @@ main:focus { outline: none; }
 .fmt-box.tiny .dim-w span { left: calc(100% + var(--space-xs)); transform: none; padding-inline: 0; }
 .fmt figcaption { font-size: var(--text-sm); color: var(--color-muted); white-space: nowrap; }
 
-.scale-note { font-size: var(--text-sm); color: var(--color-muted); padding-top: var(--space-sm); }
+.scale-note { font-size: var(--text-sm); color: var(--color-muted); padding-top: var(--space-sm); max-width: 36em; }
 
 /* ── 段落共用 ── */
 .sec-head { align-items: end; row-gap: var(--space-md); margin-bottom: var(--space-2xl); }
@@ -105,6 +105,10 @@ main:focus { outline: none; }
 .w-moments img { width: 75%; }              /* 9:16 的海报宽度取 3:4 的 75%，三张一样高 */
 .w-gzh { grid-column: 1 / 9; }
 .w-gzh-s { grid-column: 9 / 11; align-self: end; }
+/* 网页设计图：左边放大首屏，右边电脑版和手机版整页按同一比例并排（1440 : 390）；左宽右窄，两边靠上对齐，放大的首屏和右边整页顶上的首屏并排（设计总监上线前第 3 条） */
+.w-web-fold { grid-column: 1 / 9; align-self: start; }
+.w-web { grid-column: 9 / 13; }
+.web-pair { display: grid; grid-template-columns: minmax(0, 1440fr) minmax(0, 390fr); gap: var(--space-md); align-items: start; max-width: 480px; }
 
 /* ── 作品二：同一张照片，两种尺寸 ── */
 .same-photo { padding-block: var(--section-gap-s) var(--section-gap); }
@@ -165,6 +169,7 @@ main:focus { outline: none; }
   .w-xhs-a { grid-column: 1 / 7; } .w-xhs-b { grid-column: 7 / 13; }
   .w-moments { grid-column: 1 / 7; } .w-gzh-s { grid-column: 7 / 10; }
   .w-gzh { grid-column: 1 / -1; }
+  .w-web, .w-web-fold { grid-column: 1 / -1; }
   .same-text, .same-pair { grid-column: 1 / -1; }
   .steps { grid-template-columns: minmax(0, 1fr); }
   .steps li { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: var(--space-md); padding-block: var(--space-md); border-bottom: var(--rule-hair) solid var(--color-rule-on-ink); }
@@ -188,3 +193,6 @@ main:focus { outline: none; }
 @media (max-width: 22.5rem) {
   :root { --scale: 14; }   /* 320 宽：店内屏幕右边的尺寸数字也放得下 */
 }
+
+/* 条件、图说、流程也用 pretty 换行，避免最后一行只剩一个字（品管第 1 次必修 1；p 在 base.css 已经有） */
+.term dd, figcaption, .steps li { text-wrap: pretty; }
