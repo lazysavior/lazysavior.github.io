@@ -1,0 +1,190 @@
+/* Hallmark · shape: Catalogue (two offers set as a price index; examples drawn at one scale) · genre: editorial · theme: Specimen (deal 3/3, seed prompt-835c·255ed04a·2026-11-27·r0) · job: hire · draw: 896ee9
+ * hero: Index · nav: edge-aligned · footer: letter close · imagery: the product (our own example images, concept work) · signature: every format drawn at one shared scale, with blue dimension guides naming its real pixel size
+ * axes: light/grotesk-sans/cool · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: E, system fonts only (mainland can't reach web fonts), so the Specimen contrast lives in weight (300 display over 400 body) and in the guides instead of a Didone */
+@import url("./tokens.css");
+@import url("./base.css");
+
+:root {
+  --scale: 8;                 /* 示范图按同一比例缩小：1:8 */
+  --guide-gap: 14px;          /* 尺寸线离图的距离 */
+  --nav-h: 72px;
+  --seal-size: 44px;
+}
+
+/* 中文断行：标题和导语按词组换行，不在词中间断开 */
+.phrase { display: inline-block; }
+
+/* 跳到主要内容：平常在画面外，用键盘按 Tab 时出现在左上角（品管第 1 次必修 3） */
+.skip { position: absolute; left: var(--space-md); top: var(--space-md); z-index: var(--z-modal); padding: var(--space-sm) var(--space-md); background: var(--color-ink); color: var(--color-accent-ink); font-weight: 700; text-decoration: none; transform: translateY(-200%); }
+.skip:focus-visible { transform: none; }
+main:focus { outline: none; }
+
+/* ── 顶栏 ── */
+.top { border-bottom: var(--rule-hair) solid var(--color-rule); background: var(--color-paper); }
+.top-in { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); min-height: var(--nav-h); }
+.brand { display: inline-flex; align-items: center; gap: var(--space-sm); text-decoration: none; color: var(--color-ink); }
+.brand-name { display: flex; flex-direction: column; font-weight: 700; font-size: var(--text-lg); line-height: 1.2; }
+.brand-name small { font-weight: 400; font-size: var(--text-sm); color: var(--color-muted); }
+.seal {
+  display: grid; place-items: center; flex-shrink: 0;
+  width: var(--seal-size); height: var(--seal-size); border-radius: 50%;
+  border: 2px solid var(--color-seal); box-shadow: inset 0 0 0 2px var(--color-paper), inset 0 0 0 3px var(--color-seal);
+  color: var(--color-seal); font-weight: 700; font-size: 11px; line-height: 1.1; text-align: center;
+}
+.top-links { display: flex; align-items: center; gap: var(--space-lg); }
+.top-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-ink); text-decoration-color: var(--color-accent); text-underline-offset: 0.3em; }
+.top-links a:hover { text-decoration-thickness: 2px; }
+.top-links a:active { color: var(--color-ink-2); }
+.top-links .nav-quiet { text-decoration: none; color: var(--color-ink-2); }
+.top-links .nav-quiet:hover { color: var(--color-ink); text-decoration: underline; text-decoration-color: var(--color-accent); }
+
+/* ── 按钮（全页只有这一种实心按钮） ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--space-lg);
+  border: var(--rule-hair) solid var(--color-ink); border-radius: var(--radius-card);
+  font-weight: 700; text-decoration: none; transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+}
+.btn-primary { background: var(--color-ink); color: var(--color-accent-ink); }
+.btn-primary:hover { background: var(--color-ink-2); }
+.btn-primary:active { background: var(--color-ink); transform: translateY(1px); }
+
+/* ── 首屏：先是一行小标题，下面是两样服务的价目 ── */
+.hero { padding-block: var(--space-xl) var(--space-xl); }
+.grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); }
+.hero-head { align-items: end; row-gap: var(--space-sm); padding-bottom: var(--space-lg); }
+.hero-head h1 { grid-column: 1 / 9; font-size: var(--text-3xl); max-width: none; line-height: 1.2; }
+.hero-head .lead { grid-column: 1 / 9; grid-row: 2; color: var(--color-ink-2); }
+.hero-head .btn { grid-column: 10 / 13; grid-row: 1 / 3; justify-self: end; }
+
+.offers { list-style: none; margin: 0; padding: 0; border-top: 3px double var(--color-rule-2); }
+.offer { align-items: end; padding-block: var(--space-md) var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.offer-name { grid-column: 1 / 5; align-self: center; display: flex; flex-direction: column; gap: var(--space-xs); }
+.offer-name h2 { font-family: var(--font-body); font-weight: 700; font-size: var(--text-title); line-height: 1.3; max-width: none; }
+.offer-name p { color: var(--color-muted); }
+.offer-price { grid-column: 5 / 8; align-self: center; display: flex; align-items: baseline; gap: var(--space-xs); font-weight: var(--display-weight); line-height: 1; font-variant-numeric: tabular-nums; }
+.offer-price .cur { font-size: var(--text-2xl); font-variant-numeric: tabular-nums; }
+.offer-price .amount { font-size: clamp(4rem, 6vw, 6.5rem); font-variant-numeric: tabular-nums; }
+.offer-price .per { font-size: var(--text-lg); color: var(--color-muted); font-weight: 400; }
+.formats { grid-column: 8 / 13; display: flex; align-items: flex-end; gap: var(--space-2xl); padding-top: calc(var(--guide-gap) + var(--space-md)); padding-right: calc(var(--guide-gap) + var(--space-xl)); }
+
+/* 每一种尺寸：图按 1:var(--scale) 画，上面和右边各一条蓝色尺寸线，标的是实际像素 */
+.fmt { margin: 0; display: flex; flex-direction: column; gap: var(--space-xs); }
+.fmt-set { display: flex; align-items: flex-end; gap: calc(var(--guide-gap) + var(--space-xl)); }
+.fmt-box { position: relative; width: calc(var(--w) * 1px / var(--scale)); }
+.fmt-box img { width: 100%; height: auto; outline: var(--rule-hair) solid var(--color-rule); outline-offset: -1px; }
+.dim { position: absolute; color: var(--color-guide-ink); font-family: var(--font-outlier); font-size: var(--text-xs); line-height: 1; font-variant-numeric: tabular-nums; }
+.dim-w { left: 0; right: 0; top: calc(var(--guide-gap) * -1); border-top: var(--rule-hair) solid var(--color-guide); }
+.dim-w::before, .dim-w::after { content: ""; position: absolute; top: -5px; width: 1px; height: 9px; background: var(--color-guide); }
+.dim-w::before { left: 0; } .dim-w::after { right: 0; }
+.dim-w span { position: absolute; left: 50%; top: -7px; transform: translateX(-50%); padding-inline: var(--space-2xs); background: var(--color-paper); }
+.dim-h { top: 0; bottom: 0; right: calc(var(--guide-gap) * -1); border-right: var(--rule-hair) solid var(--color-guide); }
+.dim-h::before, .dim-h::after { content: ""; position: absolute; right: -5px; width: 9px; height: 1px; background: var(--color-guide); }
+.dim-h::before { top: 0; } .dim-h::after { bottom: 0; }
+.dim-h span { position: absolute; top: 50%; left: 6px; transform: translateY(-50%); writing-mode: vertical-rl; padding-block: var(--space-2xs); background: var(--color-paper); }
+.fmt-box.tiny .dim-w span { left: calc(100% + var(--space-xs)); transform: none; padding-inline: 0; }
+.fmt figcaption { font-size: var(--text-sm); color: var(--color-muted); white-space: nowrap; }
+
+.scale-note { font-size: var(--text-sm); color: var(--color-muted); padding-top: var(--space-sm); }
+
+/* ── 段落共用 ── */
+.sec-head { align-items: end; row-gap: var(--space-md); margin-bottom: var(--space-2xl); }
+.sec-head h2 { grid-column: 1 / 7; line-height: 1.15; }
+.sec-head .lead { grid-column: 7 / 13; color: var(--color-ink-2); }
+.size { font-family: var(--font-outlier); font-size: var(--text-xs); color: var(--color-guide-ink); font-variant-numeric: tabular-nums; }
+
+/* ── 作品一：松一点，四种图。作品要看得清图上的字，所以不再用 1:8 ── */
+.works { padding-block: var(--section-gap) 0; border-top: var(--rule-hair) solid var(--color-rule); }
+.case-grid { row-gap: var(--space-2xl); align-items: start; }
+.w { margin: 0; display: flex; flex-direction: column; gap: var(--space-sm); min-width: 0; }
+.w img, .pair img { width: 100%; height: auto; outline: var(--rule-hair) solid var(--color-rule); outline-offset: -1px; }
+.w figcaption, .same-pair figcaption { font-size: var(--text-sm); color: var(--color-muted); }
+.w-xhs-a { grid-column: 1 / 5; }
+.w-xhs-b { grid-column: 5 / 9; }
+.w-moments { grid-column: 9 / 13; }
+.w-moments img { width: 75%; }              /* 9:16 的海报宽度取 3:4 的 75%，三张一样高 */
+.w-gzh { grid-column: 1 / 9; }
+.w-gzh-s { grid-column: 9 / 11; align-self: end; }
+
+/* ── 作品二：同一张照片，两种尺寸 ── */
+.same-photo { padding-block: var(--section-gap-s) var(--section-gap); }
+.same-photo .container { align-items: center; row-gap: var(--space-xl); }
+.same-text { grid-column: 1 / 5; display: flex; flex-direction: column; gap: var(--space-md); }
+.same-text h2 { line-height: 1.15; }
+.same-pair { grid-column: 5 / 13; margin: 0; display: flex; flex-direction: column; gap: var(--space-sm); }
+.pair { display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.7778fr); gap: var(--gap-columns); align-items: end; }
+
+/* ── 价格里包括什么 ── */
+.terms { padding-block: var(--section-gap-s); background: var(--color-paper-2); }
+.terms-rows { margin: 0; border-top: var(--rule-hair) solid var(--color-rule-2); }
+.term { align-items: baseline; padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.term dt { grid-column: 1 / 4; font-weight: 700; font-size: var(--text-lg); }
+.term dd { grid-column: 4 / 13; margin: 0; font-size: var(--text-lg); color: var(--color-ink-2); }
+
+/* ── 在闲鱼私信咨询：深色带，流程和要准备的东西放在一起 ── */
+.contact { padding-block: var(--section-gap-s); background: var(--color-ink); color: var(--color-on-ink); }
+.contact h2 { color: var(--color-on-ink); }
+.contact .lead { color: var(--color-on-ink-2); }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: var(--gap-columns); border-top: var(--rule-hair) solid var(--color-rule-on-ink); }
+.steps li { counter-increment: step; display: flex; flex-direction: column; gap: var(--space-xs); padding-top: var(--space-lg); }
+.steps li::before { content: counter(step); font-size: var(--text-3xl); font-weight: var(--display-weight); line-height: 1; margin-bottom: var(--space-sm); font-variant-numeric: tabular-nums; }
+.steps b { font-size: var(--text-lg); font-weight: 700; }
+.steps span { color: var(--color-on-ink-2); }
+.prep { align-items: baseline; margin-top: var(--space-2xl); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule-on-ink); }
+.prep h3 { grid-column: 1 / 4; font-family: var(--font-body); font-weight: 700; font-size: var(--text-lg); color: var(--color-on-ink); }
+.prep p { grid-column: 4 / 13; max-width: none; font-size: var(--text-lg); color: var(--color-on-ink-2); }
+
+/* ── 页尾：信件式结尾，印章当落款 ── */
+.foot { padding-block: var(--space-3xl) var(--space-2xl); }
+.foot .container { align-items: center; row-gap: var(--space-lg); }
+.sign { grid-column: 1 / 5; display: flex; align-items: center; gap: var(--space-md); }
+.sign p { font-weight: 700; line-height: 1.5; }
+.sign time { font-weight: 400; font-size: var(--text-sm); color: var(--color-muted); }
+.seal-l { --seal-size: 64px; font-size: 15px; }
+.credits { grid-column: 6 / 13; max-width: 34em; font-size: var(--text-sm); color: var(--color-muted); }
+
+/* ── 961～1200 宽：示范图放不下右边 5 栏，换到名称和价格下面一排（品管第 1 次必修 2） ── */
+@media (min-width: 60.0625rem) and (max-width: 75rem) {
+  .offer { row-gap: var(--space-lg); }
+  .offer-name { grid-column: 1 / 9; }
+  .offer-price { grid-column: 9 / 13; justify-content: flex-end; }
+  .formats { grid-column: 1 / -1; }
+}
+
+/* ── 窄屏 ── */
+@media (max-width: 60rem) {
+  :root { --scale: 9; }
+  .hero-head h1, .hero-head .lead { grid-column: 1 / -1; }
+  .hero-head .btn { grid-column: 1 / -1; grid-row: 3; justify-self: start; }
+  .offer { row-gap: var(--space-lg); }
+  .offer-name { grid-column: 1 / 9; }
+  .offer-price { grid-column: 9 / 13; justify-content: flex-end; }
+  .formats { grid-column: 1 / -1; }
+  .sec-head h2, .sec-head .lead { grid-column: 1 / -1; }
+  .case-grid { grid-auto-flow: dense; }
+  .w-xhs-a { grid-column: 1 / 7; } .w-xhs-b { grid-column: 7 / 13; }
+  .w-moments { grid-column: 1 / 7; } .w-gzh-s { grid-column: 7 / 10; }
+  .w-gzh { grid-column: 1 / -1; }
+  .same-text, .same-pair { grid-column: 1 / -1; }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .steps li { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: var(--space-md); padding-block: var(--space-md); border-bottom: var(--rule-hair) solid var(--color-rule-on-ink); }
+  .steps li::before { margin-bottom: 0; min-width: 1.2em; }
+  .prep h3, .prep p { grid-column: 1 / -1; }
+  .prep { row-gap: var(--space-xs); margin-top: var(--space-xl); padding-top: 0; border-top: 0; }
+  .sign, .credits { grid-column: 1 / -1; }
+}
+@media (max-width: 40rem) {
+  .w-xhs-a, .w-xhs-b, .w-moments, .w-gzh { grid-column: 1 / -1; }
+  .w-gzh-s { grid-column: 1 / 7; }
+  .term dt, .term dd { grid-column: 1 / -1; }
+  .term { row-gap: var(--space-2xs); }
+  :root { --scale: 12; --nav-h: 64px; }
+  .brand-name small { display: none; }
+  .top-links .nav-quiet { display: none; }
+  .offer-name, .offer-price { grid-column: 1 / -1; justify-content: flex-start; }
+  .formats { gap: var(--space-xl); }
+  .fmt-set { gap: calc(var(--guide-gap) + var(--space-lg) + var(--space-xs)); }
+}
+@media (max-width: 22.5rem) {
+  :root { --scale: 14; }   /* 320 宽：店内屏幕右边的尺寸数字也放得下 */
+}
